@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Suite Accessibility Guide for Ahsan Ali</title>
+  <meta name="description" content="A screen-reader-friendly guide to using Google apps accessibly with VoiceOver on iPhone and TalkBack on a Pixel, written for Ahsan Ali.">
+  <style>
+    :root {
+      --ink: #1c1612;
+      --paper: #f6f0e4;
+      --rule: #c4b59a;
+      --link: #6b2a1f;
+      --link-visited: #4a3048;
+      --heading: #3b2218;
+      --box: #efe6d4;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Georgia, "Palatino Linotype", Palatino, "Times New Roman", serif;
+      font-size: 1.125rem;
+      line-height: 1.7;
+    }
+    .skip-link {
+      position: absolute;
+      left: 0.5rem;
+      top: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: var(--ink);
+      color: var(--paper);
+      text-decoration: underline;
+      z-index: 10;
+    }
+    .skip-link:not(:focus) {
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    a:focus, button:focus, .skip-link:focus {
+      outline: 3px solid var(--ink);
+      outline-offset: 3px;
+    }
+    a { color: var(--link); text-decoration: underline; }
+    a:visited { color: var(--link-visited); }
+    header, nav, main, footer {
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: 1.25rem 1.25rem 0;
+    }
+    footer {
+      padding-bottom: 3rem;
+      border-top: 1px solid var(--rule);
+      margin-top: 2.5rem;
+      font-size: 1rem;
+    }
+    header {
+      padding-top: 2rem;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1.25rem;
+    }
+    h1, h2, h3, h4 {
+      color: var(--heading);
+      line-height: 1.3;
+      font-weight: 700;
+    }
+    h1 { font-size: 2rem; margin: 0 0 0.75rem; }
+    h2 {
+      font-size: 1.5rem;
+      margin: 2.4rem 0 0.75rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid var(--rule);
+    }
+    h3 { font-size: 1.22rem; margin: 1.6rem 0 0.5rem; }
+    h4 { font-size: 1.08rem; margin: 1.2rem 0 0.4rem; }
+    p, ul, ol { margin: 0 0 1rem; }
+    ul, ol { padding-left: 1.4rem; }
+    li { margin: 0.25rem 0; }
+    li ul, li ol { margin-top: 0.3rem; margin-bottom: 0.4rem; }
+    .meta { font-size: 1rem; margin: 0 0 0.4rem; }
+    .note {
+      background: var(--box);
+      border-left: 4px solid var(--heading);
+      padding: 0.8rem 1rem;
+      margin: 0 0 1.2rem;
+    }
+    .note p:last-child { margin-bottom: 0; }
+    nav ol { padding-left: 1.4rem; }
+    nav li { margin: 0.15rem 0; }
+    code, kbd {
+      font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", Consolas, monospace;
+      font-size: 0.95em;
+      background: var(--box);
+      padding: 0.05em 0.3em;
+      border-radius: 0.2em;
+    }
+    kbd { border: 1px solid var(--rule); }
+    .back-top { margin: 1.5rem 0 0; font-size: 1rem; }
+
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header>
+    <h1>Google Suite Accessibility Guide</h1>
+    <p class="meta">A practical guide for Ahsan Ali.</p>
+    <p class="meta">Written 23 November 2026, Europe/London time.</p>
+    <p>This report explains how to use Google’s main apps with a screen reader. It is written for you as you use VoiceOver on an iPhone 11 with iOS 17 now, and as you plan to move to a Pixel 10 or Pixel 11 with TalkBack in the United Kingdom. British English is used throughout. The guide is meant to be read with a screen reader, one section at a time, using the linked contents list.</p>
+  </header>
+  <nav aria-labelledby="toc-heading" id="contents">
+    <h2 id="toc-heading" style="border-top:none;padding-top:0;margin-top:1rem;">Contents</h2>
+    <ol>
+      <li><a href="#start-here">Start here</a></li>
+      <li><a href="#about-this-guide">About this guide and its limits</a></li>
+      <li><a href="#account-security">Google Account and security</a></li>
+      <li><a href="#talkback">Moving from VoiceOver to TalkBack</a>
+        <ol>
+          <li><a href="#tb-first-boot">Turning TalkBack on at first boot</a></li>
+          <li><a href="#tb-gestures">Core gestures, compared with VoiceOver</a></li>
+          <li><a href="#tb-reading">Reading controls</a></li>
+          <li><a href="#tb-voice-commands">TalkBack voice commands</a></li>
+          <li><a href="#tb-braille">TalkBack braille keyboard</a></li>
+          <li><a href="#tb-keyboard">Bluetooth and external keyboard shortcuts</a></li>
+          <li><a href="#tb-select-speak">Select to Speak</a></li>
+          <li><a href="#tb-voice-access">Voice Access, for fully hands-free control</a></li>
+          <li><a href="#tb-shortcuts">Accessibility shortcuts</a></li>
+          <li><a href="#tb-pixel">Pixel-specific features</a></li>
+          <li><a href="#tb-vibration">How web vibration works in Android Chrome</a></li>
+        </ol>
+      </li>
+      <li><a href="#gmail">Gmail</a></li>
+      <li><a href="#calendar">Google Calendar</a></li>
+      <li><a href="#drive">Google Drive</a></li>
+      <li><a href="#docs">Google Docs</a></li>
+      <li><a href="#sheets">Google Sheets</a></li>
+      <li><a href="#slides">Google Slides</a></li>
+      <li><a href="#keep">Google Keep</a></li>
+      <li><a href="#tasks">Google Tasks</a></li>
+      <li><a href="#contacts">Google Contacts</a></li>
+      <li><a href="#photos">Google Photos</a></li>
+      <li><a href="#lookout">Lookout</a></li>
+      <li><a href="#maps">Google Maps</a></li>
+      <li><a href="#youtube">YouTube and YouTube Music</a></li>
+      <li><a href="#podcasts">Google Podcasts replacement</a></li>
+      <li><a href="#gemini">Google Assistant and Gemini</a></li>
+      <li><a href="#chrome">Google Chrome</a></li>
+      <li><a href="#meet">Google Meet</a></li>
+      <li><a href="#messages">Google Messages</a></li>
+      <li><a href="#phone">Phone and Call Screen</a></li>
+      <li><a href="#recorder">Recorder and transcription</a></li>
+      <li><a href="#live-transcribe">Live Transcribe</a></li>
+      <li><a href="#gboard">Gboard voice typing</a></li>
+      <li><a href="#wallet">Google Wallet</a></li>
+      <li><a href="#fit">Google Fit and Fitbit</a></li>
+      <li><a href="#glossary">Glossary</a></li>
+      <li><a href="#unverified">What could not be verified</a></li>
+      <li><a href="#sources">Sources and further help</a></li>
+    </ol>
+  </nav>
+  <main id="main">
+
+    <section aria-labelledby="start-here">
+      <h2 id="start-here">Start here</h2>
+      <p>If you only have a short time, do these things first. The rest of the guide is there when you need a particular app.</p>
+      <ol>
+        <li>On your iPhone now, keep using the official Google apps (Gmail, Calendar, Drive, Maps, YouTube, Chrome and so on) with VoiceOver. They work. The web versions at <a href="https://gmail.com/">gmail.com</a>, <a href="https://calendar.google.com/">calendar.google.com</a> and <a href="https://drive.google.com/">drive.google.com</a> are often even stronger once you turn on each site’s keyboard shortcuts and, in Docs, Sheets and Slides, turn on screen reader support.</li>
+        <li>Turn on 2-Step Verification for your Google Account, add a recovery email and phone, and store a set of backup codes somewhere safe that you can reach without that phone. See <a href="#account-security">Google Account and security</a>.</li>
+        <li>When your Pixel arrives, turn it on and, on the first setup screens, hold down both volume buttons for a few seconds. TalkBack should start and a tutorial should open automatically. Take that tutorial slowly. Official steps: <a href="https://support.google.com/accessibility/android/answer/6007100?hl=en-GB">Turn on TalkBack</a>.</li>
+        <li>Learn four TalkBack habits that will carry you through almost every app: swipe right or left to move, double-tap to activate, two-finger swipe to scroll, and three-finger tap to open the TalkBack menu. A full comparison with VoiceOver is in <a href="#talkback">Moving from VoiceOver to TalkBack</a>.</li>
+        <li>Because you prefer voice and sometimes find dictation unreliable, turn on two extra tools early: <a href="#gboard">Gboard voice typing</a> and <a href="#tb-voice-access">Voice Access</a>. Voice Access can open apps, tap buttons and type by spoken commands, which is especially helpful when you do not want to touch the screen.</li>
+        <li>On the Pixel, turn on detailed voice guidance in Google Maps before you try an unfamiliar walking route, and install <a href="#lookout">Lookout</a> for reading text, describing images and finding objects around you.</li>
+        <li>When you open any of your web apps in Chrome on Android, give the page one deliberate double-tap first if you want vibration feedback. The Vibration API works in Chrome on Android after a user action. It does not work in Safari on iPhone. See <a href="#tb-vibration">How web vibration works in Android Chrome</a>.</li>
+      </ol>
+      <div class="note">
+        <p>This guide has been researched from Google’s official help pages and a small number of reputable supporting sources, current as far as those pages allowed in late November 2026. It has not been tested on an iPhone with VoiceOver, or on a Pixel with TalkBack, by the author. Where a gesture or feature could not be verified, that is stated in the section and again in <a href="#unverified">What could not be verified</a>.</p>
+      </div>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="about-this-guide">
+      <h2 id="about-this-guide">About this guide and its limits</h2>
+      <p>Each app section follows the same pattern: what the app is for, how to use it with TalkBack on Android, how to use it with VoiceOver on iPhone or on the web, the most useful gestures and keyboard shortcuts, and known pain points with honest workarounds.</p>
+      <p>A few rules used while writing:</p>
+      <ul>
+        <li>Gestures are taken from official Google or Apple help. They are not invented. If a help page listed a shortcut but the label was missing or unclear in the text that could be retrieved, that shortcut is not listed here.</li>
+        <li>Features often depend on the phone model, the Android or iOS version, the country, the language, and whether a feature is still rolling out. UK availability is noted where official pages mention it. Some AI features, such as Gboard’s “Fix it”, are officially limited to the United States.</li>
+        <li>Pixel 10 and Pixel 11, including Pro and Fold models, are named in current official Google help, so this guide treats both as real products. Exact shop availability, prices and every UK software difference have not been independently checked.</li>
+        <li>Google changes menus from time to time. If a path in Settings does not match what you hear, use the Settings search box, or ask Gemini or Google Assistant: “Open TalkBack settings”.</li>
+        <li>Several official Google pages still mention older TalkBack “context menus”. Those were replaced years ago by the TalkBack menu and reading controls. Where a page looks dated, this guide says so.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="account-security">
+      <h2 id="account-security">Google Account and security</h2>
+      <h3>What it is for</h3>
+      <p>Your Google Account is the key to Gmail, Calendar, Drive, Photos, YouTube and the rest. On a new Pixel you will sign in once, and most Google apps will then share that sign-in. Protecting the account matters more than almost any other step in this guide, because losing it would lock you out of email, files and photos.</p>
+      <h3>What to set up first</h3>
+      <ul>
+        <li>Open <a href="https://myaccount.google.com/">myaccount.google.com</a> and go to Security, or Security and sign-in.</li>
+        <li>Turn on 2-Step Verification. Official steps: <a href="https://support.google.com/accounts/answer/185839?hl=en-GB">Turn on 2-Step Verification</a>.</li>
+        <li>Add a recovery email and a recovery phone number that you can actually reach.</li>
+        <li>Set up Google prompts on your current iPhone (through the Gmail, Google, Photos or YouTube app signed in to your account) and later on the Pixel. Google recommends prompts rather than text-message codes, because text messages can be attacked through the phone number.</li>
+        <li>Create a passkey on your phone, using the device lock (PIN, fingerprint or face). A passkey proves you have the device, so it can replace the password-plus-second-step dance. Official help: <a href="https://support.google.com/accounts/answer/10956730?hl=en-GB">Protecting your personal info with 2-Step Verification</a>.</li>
+        <li>Download or print a set of 8-digit backup codes and store them somewhere safe that is not only on the same phone. Official help: <a href="https://support.google.com/accounts/answer/1187538?hl=en-GB">Sign in with backup codes</a>.</li>
+        <li>Consider Google Authenticator or another one-time-code app as a backup method that still works without a mobile signal.</li>
+        <li>Never read a verification code out to someone who calls or emails claiming to be Google. Official help is clear: Google will not phone you to ask for a code, and you should never share one.</li>
+      </ul>
+      <h3>With VoiceOver on iPhone, or on the web</h3>
+      <p>The Google Account site works with VoiceOver in Safari or Chrome. Headings and form fields are generally labelled. If a security page feels awkward in a Google app, open it in Safari instead. After you connect a Bluetooth keyboard, standard web navigation (VoiceOver plus Tab, or VoiceOver Quick Nav off plus the site’s own controls) is usually calmer than poking a compact mobile layout.</p>
+      <h3>With TalkBack on Android</h3>
+      <p>On a Pixel, Settings, then Google, or the Google app, then your profile, leads to the same account. TalkBack will speak password characters in secure fields unless you change that in TalkBack settings. If you are in a public place, you may prefer to hide the screen (TalkBack menu, Hide or show screen) while entering a password, and to stop TalkBack speaking typed password letters.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>Account recovery can be slow and stressful if you lose the phone that receives prompts. Set up at least two methods before you retire the iPhone: a recovery email, backup codes, and if possible a passkey or security key on a second device.</li>
+        <li>A new 2-Step Verification phone number may not be fully trusted for up to seven days. Official help mentions this delay. Do not remove the old number until the new one is trusted.</li>
+        <li>The Advanced Protection Programme is Google’s strongest option, built around security keys or passkeys. It is excellent against phishing, but backup codes cannot be downloaded if you are in that programme, so you need a spare key. Only turn it on if you understand the recovery path.</li>
+        <li>On a trusted computer or phone of your own, you can tick “Don’t ask again on this device”. Do not do that on a shared or borrowed machine.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="talkback">
+      <h2 id="talkback">Moving from VoiceOver to TalkBack</h2>
+      <p>TalkBack is the screen reader built into Android, including Pixel phones. It is part of the Android Accessibility Suite. In daily use it does the same job as VoiceOver: it speaks what has focus, and it changes the meaning of taps and swipes so that a single tap does not activate something by accident.</p>
+      <p>The good news is that the everyday gestures are closer than they used to be. Swipe right for the next item, swipe left for the previous item, and double-tap to activate are the same idea on both systems. The differences that catch people out are scrolling, the rotor, and system gestures such as Home and Back. Those are covered below, from official Google and Apple pages.</p>
+      <p>On a modern Pixel (Pixel 3 and later, including Pixel 10 and 11), TalkBack supports both one-finger and multi-finger gestures. Official help: <a href="https://support.google.com/accessibility/android/answer/6283677?hl=en-GB">Get started on Android with TalkBack</a> and <a href="https://support.google.com/accessibility/android/answer/6151827?hl=en-GB">Use TalkBack gestures</a>.</p>
+
+      <h3 id="tb-first-boot">Turning TalkBack on at first boot</h3>
+      <p>This is the most important setup gesture. Official Google help for both Android and Pixel says:</p>
+      <ul>
+        <li>When you set up the phone, hold down both volume buttons for a few seconds. TalkBack turns on.</li>
+        <li>You can keep using the volume buttons as a shortcut to turn TalkBack on or off later, unless you disable that shortcut in Settings, Accessibility, TalkBack, TalkBack shortcut.</li>
+        <li>The first time TalkBack turns on, the TalkBack tutorial opens automatically. Take it. You can open it again later from the TalkBack menu, TalkBack settings, Tutorial and help, then Tutorial.</li>
+      </ul>
+      <p>After setup, you can also:</p>
+      <ul>
+        <li>Open Settings, Accessibility, TalkBack, and choose Use TalkBack.</li>
+        <li>Say “Hey Google, turn on TalkBack” or “Hey Google, turn off TalkBack”, once Gemini or Google Assistant is set up.</li>
+        <li>On Android 16 and later, with an external keyboard, press Action + Alt + T. Action is the Windows key on a Windows keyboard, or Command on a Mac keyboard. Official source: <a href="https://support.google.com/accessibility/android/answer/6007100?hl=en-GB">Turn on TalkBack</a>.</li>
+      </ul>
+      <p>If someone sighted is helping you unbox the phone, ask them not to rush past the first screens. You want TalkBack running before Wi-Fi, Google Account sign-in and fingerprint or PIN setup, so that you can hear those steps.</p>
+
+      <h3 id="tb-gestures">Core gestures, compared with VoiceOver</h3>
+      <p>These are the TalkBack 9.1 and later gestures, which apply on a current Pixel. One-finger gestures work on all Android phones. Multi-finger gestures work on updated Android 11 (Android R) with TalkBack 9.1, on Pixel 3 and later, and on some other brands such as Samsung.</p>
+      <p>To check that multi-finger gestures work: with TalkBack on, tap with three fingers. If you hear the TalkBack menu, they work. If you do not, open the menu with a one-finger swipe down then right, or swipe up then right.</p>
+      <h4>Moving around and activating</h4>
+      <ul>
+        <li>Move to the next item: swipe right with one finger. VoiceOver: also swipe right.</li>
+        <li>Move to the previous item: swipe left with one finger. VoiceOver: also swipe left.</li>
+        <li>Explore by touch: drag one finger around the screen. VoiceOver: the same.</li>
+        <li>Select an item (hear it, without opening it): tap once. VoiceOver: the same.</li>
+        <li>Activate the focused item: double-tap. VoiceOver: the same.</li>
+        <li>Long-press the focused item (the equivalent of a “touch and hold”): double-tap and hold. VoiceOver uses a triple-tap for touch-and-hold, so this is a difference.</li>
+        <li>Split-tap, added in TalkBack 16.2: move one finger to an item, and without lifting it, tap the screen with a second finger to activate it. VoiceOver has the same idea: touch and hold with one finger, then tap with another. Official source: <a href="https://support.google.com/accessibility/android/answer/16800105?hl=en-GB">What’s new with TalkBack 16.2</a>.</li>
+      </ul>
+      <h4>Scrolling and reading</h4>
+      <ul>
+        <li>Scroll up, down, left or right: swipe with two fingers in that direction. This is a common trip-up. VoiceOver scrolls a page with a three-finger swipe, and the swipe direction is reversed from the page movement (a three-finger swipe up moves the content up, which shows the next page down). TalkBack’s two-finger swipe is the everyday scroll, in the direction you want the content to move.</li>
+        <li>Pause or resume speech: two-finger tap. VoiceOver: also two-finger tap.</li>
+        <li>Read from the next item: two-finger triple-tap (multi-finger gesture). VoiceOver uses a two-finger swipe down to read from the selected item, and a two-finger swipe up to read from the top. TalkBack’s “read from top / read from focused item” also lives in the TalkBack menu.</li>
+        <li>Start or stop media, and answer or hang up a call: two-finger double-tap. VoiceOver’s Magic Tap is also a two-finger double-tap, and does the same kind of job.</li>
+      </ul>
+      <h4>The TalkBack menu, and VoiceOver’s rotor</h4>
+      <ul>
+        <li>Open the TalkBack menu: three-finger tap, or a one-finger swipe down then right. This is where you will find Read from focused item, Copy last spoken phrase, Screen search, Hide or show screen, Voice commands, TalkBack settings, and, on current versions, image and screen descriptions.</li>
+        <li>VoiceOver has no exact menu like this. Many of those actions sit in the rotor, in the Item Chooser (two-finger triple-tap), or in VoiceOver settings.</li>
+        <li>TalkBack’s closest equivalent to the VoiceOver rotor is <a href="#tb-reading">reading controls</a>, described in the next section.</li>
+      </ul>
+      <h4>System gestures: Home, Back, Recents, notifications</h4>
+      <p>Android has no Home button on a modern Pixel. It uses either gesture navigation (the default) or three-button navigation. With TalkBack and gesture navigation, official help says you use two fingers for the system gestures that a sighted person does with one finger.</p>
+      <ul>
+        <li>Home: one-finger swipe up then left, or, with gesture navigation, a two-finger swipe up from the bottom.</li>
+        <li>Back: one-finger swipe down then left, or, with gesture navigation, a two-finger swipe from the left or right edge.</li>
+        <li>Recents (the app switcher): one-finger swipe left then up, or, with gesture navigation, a two-finger swipe up from the bottom and hold.</li>
+        <li>Show notifications: one-finger swipe right then down, or a two-finger swipe down from the top.</li>
+        <li>Show Quick Settings: while notifications are open, two-finger swipe down again.</li>
+        <li>Open the app list from the Home screen: two-finger swipe up.</li>
+      </ul>
+      <p>VoiceOver comparison, from <a href="https://support.apple.com/guide/iphone/use-voiceover-gestures-iph3e2e2281/ios">Apple’s VoiceOver gestures guide</a>:</p>
+      <ul>
+        <li>On iPhone models with no Home button, you go Home by sliding one finger up from the bottom until you feel a vibration, then lifting. TalkBack, by contrast, wants two fingers from the bottom, or the up-then-left L-shaped swipe.</li>
+        <li>VoiceOver uses a two-finger scrub (two fingers zig-zag in a “z”) to dismiss an alert or go back. TalkBack’s Back is down then left, or a two-finger edge swipe.</li>
+        <li>VoiceOver’s Control Centre and Notification Centre start at the status bar or the top edge. TalkBack’s notification shade is right-then-down, or two fingers from the top.</li>
+      </ul>
+      <h4>Other TalkBack gestures worth learning early</h4>
+      <ul>
+        <li>Screen search (find text on the current screen): swipe left then down.</li>
+        <li>Practise gestures: four-finger tap.</li>
+        <li>TalkBack help: four-finger double-tap.</li>
+        <li>Pass-through (the next gesture is treated as if TalkBack were off): four-finger double-tap and hold, or three-finger double-tap, according to the official gesture list. If you are unsure which your phone uses, check TalkBack settings, Gestures, rather than guessing.</li>
+        <li>Move a slider, such as volume, once it has focus: swipe up, or right then left, to increase; swipe down, or left then right, to decrease.</li>
+        <li>Text selection (multi-finger): two-finger double-tap and hold to start or end selection mode; three-finger double-tap to copy; three-finger double-tap and hold to cut; three-finger triple-tap to paste.</li>
+      </ul>
+      <p>Most TalkBack gestures can be reassigned in TalkBack settings, Gestures. Two-finger swipe gestures cannot be reassigned. If a default gesture is awkward with one hand, it is worth customising. Official source: <a href="https://support.google.com/accessibility/android/answer/6151827?hl=en-GB">Use TalkBack gestures</a>.</p>
+
+      <h3 id="tb-reading">Reading controls</h3>
+      <p>Reading controls are TalkBack’s rotor. They change what a swipe up or down will do: move by character, word, line or paragraph; jump by headings, links or controls; change speech rate; search the screen; and, in a table, move by row or column.</p>
+      <p>To cycle the reading control:</p>
+      <ul>
+        <li>On a Pixel with multi-finger gestures: three-finger swipe up or down. You can also use a one-finger swipe up then down, or down then up.</li>
+        <li>On older one-finger-only devices: swipe up then down, or down then up.</li>
+      </ul>
+      <p>Once a control is chosen, swipe down to go to the next item of that type, or swipe up to go to the previous one. For speech rate, swipe up to speak faster and swipe down to speak slower.</p>
+      <p>Default reading controls, from <a href="https://support.google.com/accessibility/android/answer/6007066?hl=en-GB">Use the TalkBack menu and reading controls</a>:</p>
+      <ul>
+        <li>Characters, words, lines and paragraphs.</li>
+        <li>Rows and columns, for tables. TalkBack 16.0 can switch to table navigation automatically when you enter a table. You can turn that on or off in TalkBack settings, Advanced settings.</li>
+        <li>Headings, controls (buttons, tick boxes, text fields) and links.</li>
+        <li>Speech rate and spoken language (if you have more than one text-to-speech language installed).</li>
+        <li>Screen search.</li>
+      </ul>
+      <p>You can add more controls, such as buttons, tick boxes, edit fields, heading levels 1 to 6, images and videos, lists, list items, tables, combo boxes and visited links. Path: TalkBack settings, Edit menus or Customise menus, Customise reading controls.</p>
+      <p>The TalkBack menu itself, opened with a three-finger tap, includes Read from focused item, Copy last spoken phrase, Spoken language, Screen search, Hide or show screen, Voice commands, and settings for TalkBack, text-to-speech and braille. Options also change with context: Actions, Edit options, Links, and Add or edit label when those apply.</p>
+      <p>TalkBack 16.0 and later, in English, also add Describe image, Describe screen, and Ask Gemini to the menu, so you can hear a generated description of an image or of the current screen, then ask a follow-up question. Official source: <a href="https://support.google.com/accessibility/android/answer/16294093?hl=en-GB">What’s new with TalkBack 16.0</a>.</p>
+      <p>TalkBack 16.2 can announce text formatting changes (bold, italics, underline, font size, colour). Turn this on in TalkBack settings, Verbosity, Speak text formatting, or add it to reading controls.</p>
+
+      <h3 id="tb-voice-commands">TalkBack voice commands</h3>
+      <p>From TalkBack 9.1 onwards you can speak many TalkBack actions. Official help: <a href="https://support.google.com/accessibility/android/answer/10449331?hl=en-GB">Use TalkBack voice commands</a>.</p>
+      <ul>
+        <li>Start listening: swipe right then up with one finger, wait for the confirmation sound, then speak. You can change this gesture in TalkBack settings, Customise gestures.</li>
+        <li>Useful commands include: “Read from next”, “Read from top”, “Next heading”, “Next link”, “Next control”, “Talk faster”, “Talk slower”, “Find” followed by a word, “Type” or “Dictate” followed by text, “Copy”, “Paste”, “Home”, “Back”, “Notifications”, “Quick Settings”, “Recent apps”, “Hide screen”, “Show screen”, and “TalkBack settings”.</li>
+        <li>To cancel, say “Stop”, “Quit”, “Quiet”, “Pause” or “Never mind”.</li>
+      </ul>
+      <p>This is not the same as Voice Access. TalkBack voice commands control the screen reader. Voice Access, covered later, controls the whole phone.</p>
+
+      <h3 id="tb-braille">TalkBack braille keyboard</h3>
+      <p>The TalkBack braille keyboard lets you type six-dot braille with six fingers on the screen. TalkBack must be on, and magnification must be off. Official help: <a href="https://support.google.com/accessibility/android/answer/9728765?hl=en-GB">Use the TalkBack braille keyboard</a>.</p>
+      <p>To set it up: open the TalkBack menu, then TalkBack settings, Braille keyboard, Set up braille keyboard, and follow the spoken steps. In an app such as Gmail or Keep, focus a text field, double-tap, choose Switch input method or Next language, and select TalkBack braille keyboard. A tutorial is offered the first time.</p>
+      <p>There are two typing postures:</p>
+      <ul>
+        <li>Screen-away mode: the screen faces away from you, in landscape. Your left hand holds the top of the phone, your right hand holds the bottom (USB port end). This is for typing with the phone held in front of you, screen outward.</li>
+        <li>Tabletop mode: the phone lies on a flat surface with the charging port on the left. Dots from left to right are 3, 2, 1, 4, 5 and 6, like a Perkins Brailler. The phone should announce “Tabletop mode” when it detects a flat surface.</li>
+      </ul>
+      <p>By default the keyboard switches mode with the phone’s orientation. You can lock the layout in TalkBack settings, Braille keyboard, Layout. If the dots feel wrongly placed, hold all six dots for about three seconds until you hear that the positions have been updated, or use Update dot positions from the braille keyboard menu (three-finger swipe up).</p>
+      <p>While the braille keyboard is open, ordinary TalkBack gestures are not available. Official basic gestures:</p>
+      <ul>
+        <li>Space: swipe right.</li>
+        <li>Delete a letter: swipe left.</li>
+        <li>Delete a word: two-finger swipe left.</li>
+        <li>New line: two-finger swipe right.</li>
+        <li>Submit: two-finger swipe up.</li>
+        <li>Hide the keyboard and return to ordinary TalkBack gestures: two-finger swipe down.</li>
+        <li>Switch to the next keyboard: three-finger swipe down.</li>
+        <li>Help and other options, including language and grade 1 or grade 2 braille: three-finger swipe up.</li>
+      </ul>
+      <p>There is a longer official list for cursor movement, selection, copy, cut, paste and proofreading, including hold-a-dot-then-swipe gestures. See the official page rather than memorising them all at once. You can also connect a refreshable braille display; TalkBack 16.2 adds browse-mode shortcuts on the display and a way to read system messages such as notifications. Official path for the display shortcut list: Settings, Accessibility, TalkBack, Settings, Braille display.</p>
+      <p>A known official quirk: on some devices, if you close the braille keyboard in the Messages app, the Back button may not work. The official workaround is to go to the Home screen and continue from there.</p>
+
+      <h3 id="tb-keyboard">Bluetooth and external keyboard shortcuts</h3>
+      <p>A Bluetooth keyboard is often easier than on-screen typing, especially if you already think in keyboard commands. Connect the keyboard in Android Settings, Connected devices. Official TalkBack help: <a href="https://support.google.com/accessibility/android/answer/6110948?hl=en-GB">Use TalkBack keyboard shortcuts</a>.</p>
+      <p>TalkBack has two keymaps:</p>
+      <ul>
+        <li>Default keymap: fewer shortcuts. The TalkBack key is Alt or the Action key.</li>
+        <li>Enhanced keymap: more shortcuts, designed for web browsing, with Browse mode. On first activation of TalkBack 16.2 or later, Enhanced keymap is on by default.</li>
+      </ul>
+      <p>The Action key is the Windows key on a Windows keyboard, or Command on a Mac keyboard. In Enhanced keymap, the TalkBack key is this Action key. You can change the modifier in TalkBack settings, Advanced settings, Keyboard shortcuts, Choose modifier key. TalkBack 16.2 includes a keyboard tutorial: TalkBack menu, TalkBack settings, TalkBack tutorial, when a physical keyboard is connected.</p>
+      <p>Browse mode, on the Enhanced keymap, is turned on by double-pressing the TalkBack key. In Browse mode you can jump by headings, links, lists and tables with single letter keys, similar in spirit to NVDA or JAWS. Smart browse mode (TalkBack 16.2) turns Browse mode off automatically when you enter an editable field so that you can type, then turns it back on when you leave the field.</p>
+      <p>Shortcuts that official help clearly labels, and that are safe to learn first (TalkBack key is Alt or Action, depending on keymap):</p>
+      <ul>
+        <li>Next item: TalkBack key + Right arrow.</li>
+        <li>Previous item: TalkBack key + Left arrow.</li>
+        <li>Next or previous item by the current reading control: TalkBack key + Up arrow or Down arrow.</li>
+        <li>First item: TalkBack key + Ctrl + Left arrow. Last item: TalkBack key + Ctrl + Right arrow.</li>
+        <li>Back: TalkBack key + Delete.</li>
+        <li>Notifications: TalkBack key + Ctrl + N.</li>
+        <li>Play or pause media: TalkBack key + Shift + Space.</li>
+        <li>Open the apps list: double-press the Action key.</li>
+        <li>Turn TalkBack on or off (Android 16 and later): Action + Alt + T.</li>
+        <li>Visited links (TalkBack 16.0 and later): TalkBack key + V, and TalkBack key + Shift + V for the previous visited link.</li>
+      </ul>
+      <p>There is a much longer official list for Chrome web navigation, landmarks, headings 1 to 6, and informational commands such as speaking the time or battery. Some labels did not come through clearly when the official tables were retrieved for this guide, so those extra shortcuts are not listed here. Use the in-app keyboard tutorial and the official shortcut page, and reassign anything that feels wrong.</p>
+      <p>Other useful keyboard shortcuts that are not TalkBack-specific:</p>
+      <ul>
+        <li>Ctrl + Alt + Z triggers the same accessibility shortcut as holding both volume keys, once that volume-key shortcut is enabled.</li>
+        <li>On Android 16, Action + Alt + T toggles TalkBack. On Android 17 and later, Action + Alt + S toggles Select to Speak, according to official Select to Speak help. Whether a given Pixel 10 or 11 ships with Android 16 or 17 should be checked on the phone itself in Settings, About phone.</li>
+      </ul>
+
+      <h3 id="tb-select-speak">Select to Speak</h3>
+      <p>Select to Speak is a “read this bit aloud” tool. It is not a full screen reader. People often use it alongside TalkBack, or instead of TalkBack when they only want a paragraph read. Official help: <a href="https://support.google.com/accessibility/android/answer/7349565?hl=en-GB">Use Select to Speak</a>.</p>
+      <ul>
+        <li>Turn it on in Settings, Accessibility, Select to Speak, and enable its shortcut. If you cannot find it, install or update Android Accessibility Suite from the Play Store.</li>
+        <li>The usual shortcut is a two-finger swipe up, or a three-finger swipe up if TalkBack is on, or the Accessibility button.</li>
+        <li>Then tap an item to hear it, drag a finger across several items, or activate Play to hear everything. You can change speed, pause, and skip in the player.</li>
+        <li>You can also select text in a supporting app and choose More, then Read aloud, without turning Select to Speak on.</li>
+        <li>There is an option to let it keep reading in the background while you move to another app.</li>
+        <li>You can point the Camera app at printed text or a picture and use Select to Speak to hear it. Official language list for this camera method includes English and many European languages.</li>
+      </ul>
+      <p>Official help notes that Select to Speak might not work with every mobile web browser. Chrome is the safe first choice.</p>
+
+      <h3 id="tb-voice-access">Voice Access, for fully hands-free control</h3>
+      <p>Voice Access is the Android feature that lets you control the phone entirely by speaking: open apps, tap buttons, scroll, type, and move around the system. Official help: <a href="https://support.google.com/accessibility/android/answer/6151854?hl=en-GB">Use Voice Access commands</a>. This is likely to matter to you more than to many people, because you already prefer voice, and because you want games and other apps to work when your hands are not free.</p>
+      <p>It supports English, Spanish, German, Italian, French, Portuguese and Japanese. Official help says Portuguese and Japanese only have the top 25 commands.</p>
+      <h4>Turning it on and starting it</h4>
+      <ul>
+        <li>Install Voice Access if it is not already on the phone, then turn it on in Settings, Accessibility, Voice Access.</li>
+        <li>Start it by saying “Hey Google, Voice Access” or, if Gemini is your assistant, “Hey Google, start Voice Access”. Official pages use both wordings. One official note says the “start Voice Access” wording works with Gemini and not with the older Assistant. If one phrase fails, try the other.</li>
+        <li>You can also start it from a notification, from the Voice Access app, from an on-screen activation button, or from a physical key or switch configured in Voice Access settings.</li>
+      </ul>
+      <h4>Everyday commands</h4>
+      <ul>
+        <li>Navigation: “Open Gmail”, “Go home”, “Go back”, “Show notifications”, “Show Quick Settings”, “Show recent apps”, “Show previous app”, “Lock screen”, “Take screenshot”.</li>
+        <li>On a screen: “Tap compose”, or “Tap” followed by the name of any visible text or label. If several items match, Voice Access asks “Which one?” and you say the number.</li>
+        <li>“Show numbers” puts a number on every tappable item until you say “Hide numbers”. “Show labels” does the same with names, and hides automatically when the screen changes.</li>
+        <li>Help: “What can I say?”, “Show all commands”, “Open tutorial”, “Stop Voice Access”.</li>
+        <li>Typing and editing: “Type” or dictate into a field, then “Replace X with Y”, “Capitalise X”, “Delete X”, “Go to the beginning”, “Select X”, “Copy”, “Paste”, “New line”.</li>
+        <li>After one command, Voice Access listens again for the next, which is what makes truly hands-free chains possible: “Open Messages”, “Tap compose”, then dictate, then “Tap send”.</li>
+      </ul>
+      <p>Voice Access can run at the same time as TalkBack, but two listening systems plus Gemini can talk over each other. A practical pattern used by many people is: TalkBack on for exploration, Voice Access started when you want a stretch of hands-free control, and “Stop Voice Access” when you are done. This combination has not been tested for this guide on a Pixel, so treat that as advice to try, not as a proven setup.</p>
+      <p>Voice Access needs a reasonably clear spoken command. If your voice varies, “Show numbers” and then “Tap 3” is often more reliable than hoping it hears a long button name.</p>
+
+      <h3 id="tb-shortcuts">Accessibility shortcuts</h3>
+      <p>Android lets you assign a shortcut to TalkBack, Select to Speak, Voice Access, Magnification, Live Transcribe, Guided vision and other tools. Official help: <a href="https://support.google.com/accessibility/android/answer/7650693?hl=en-GB">Use accessibility shortcuts</a>.</p>
+      <p>Path: Settings, Accessibility, then the feature, then its shortcut setting. Choices typically include:</p>
+      <ul>
+        <li>The Accessibility button, either in the navigation bar (three-button navigation) or as a floating button.</li>
+        <li>Hold both volume keys.</li>
+        <li>A finger swipe: two-finger swipe up from the bottom, or three-finger swipe if TalkBack is on.</li>
+        <li>A Quick Settings tile.</li>
+        <li>Triple-tap for Magnification.</li>
+      </ul>
+      <p>If more than one feature shares a shortcut, hold the shortcut, then choose from a menu. The volume-key shortcut can also be triggered from a keyboard with Ctrl + Alt + Z. You can later turn the volume-key shortcut off if you keep hitting it by accident in a pocket or on a bus.</p>
+      <p>If you prefer the old-style Back, Home and Recents buttons, you can switch from gesture navigation to three-button navigation in Settings, System, Gestures, System navigation. Some people coming from an iPhone with a Home button find three-button navigation easier at first. Others prefer gestures. Either works with TalkBack.</p>
+
+      <h3 id="tb-pixel">Pixel-specific features</h3>
+      <p>A Pixel is usually the smoothest Android phone for TalkBack, because Google builds TalkBack and the Pixel software together. Features below are documented for recent Pixels. Where a feature is limited to a certain model or country, that is stated.</p>
+      <ul>
+        <li>Automatic image descriptions, powered by on-device generative AI, are available on Pixel 9 and later, which includes Pixel 10 and 11. When TalkBack focus lands on an image in a supported app, a description can be generated automatically. You can choose All images, Unlabelled images only, or Don’t describe images, in TalkBack settings under Automatic descriptions. Official help: <a href="https://support.google.com/accessibility/android/answer/15341968?hl=en-GB">Use image descriptions in TalkBack</a>.</li>
+        <li>Describe image, Describe screen and Ask Gemini (English) are in the TalkBack menu on current TalkBack versions, as described earlier.</li>
+        <li>Gemini is the default assistant on Pixel 9 and later, including Pixel 10 and 11. “Hey Google” and a press-and-hold of the power button open Gemini. Official help: <a href="https://support.google.com/pixelphone/answer/15283615?hl=en-GB">Use Gemini on your Pixel phone</a>.</li>
+        <li>Guided vision in Gemini Live can describe what the camera sees, help you reframe the shot, read labels and identify objects. Official help says it is rolling out slowly, so it may not be on the phone yet. It is not a mobility or navigation aid. You can start it from the TalkBack menu (Guided vision) or assign it as an accessibility shortcut. Official help: <a href="https://support.google.com/accessibility/android/answer/18365638?hl=en-GB">Get audio descriptions with guided vision in Gemini Live</a>.</li>
+        <li>Lookout, Live Transcribe, Recorder with English (United Kingdom) transcription, Call Screen, and Live Caption are all first-class on a Pixel. Each has its own section below.</li>
+        <li>Call Screen automatic screening is officially available in the UK. Some newer Call Screen behaviours on Pixel 11 are officially limited to a US SIM and English in the United States. See <a href="#phone">Phone and Call Screen</a>.</li>
+        <li>Gboard’s advanced voice typing is officially for Pixel 6 and later. Some editing features are US-only. See <a href="#gboard">Gboard voice typing</a>.</li>
+        <li>Hearing aid support, Sound Amplifier, Live Caption, and Audio description (for videos that provide it, on Android 13 and later) are in Settings, Accessibility.</li>
+      </ul>
+      <p>If you are choosing between Pixel 10 and Pixel 11, official help already names both. This guide cannot honestly rank them for TalkBack quality, because that has not been tested here. For accessibility, the software features above matter more than a modest hardware bump, except where a feature is listed as “Pixel 11 and later”. Check the UK feature list on the official Pixel pages before you buy.</p>
+
+      <h3 id="tb-vibration">How web vibration works in Android Chrome</h3>
+      <p>This matters for the web apps you already use, such as games and meditation pages that try to vibrate the phone.</p>
+      <ul>
+        <li>Chrome for Android supports the web Vibration API, <code>navigator.vibrate()</code>. MDN and Can I use both list it as supported in Chrome for Android. Official MDN page: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate">Navigator.vibrate()</a>.</li>
+        <li>A page can only vibrate after a “sticky user activation”. In practice, you need to have tapped or double-tapped something on that page first. A vibration that starts all by itself, with no tap, is usually blocked.</li>
+        <li>Vibration can also fail if the phone is in Silent or Do Not Disturb mode, or if vibration is turned off in system settings. MDN mentions this.</li>
+        <li>TalkBack has its own vibration feedback setting, in TalkBack settings. That setting is for TalkBack’s own ticks and cues. It does not replace the web Vibration API, and it does not remove the need for a tap on the page.</li>
+        <li>Safari on iPhone does not support the Vibration API. Can I use lists Safari on iOS as not supported, including current versions retrieved in November 2026. Chrome on iPhone uses Apple’s WebKit, so it is in the same position: web vibration should not be expected on the iPhone at all.</li>
+      </ul>
+      <p>Practical advice for your apps: on a Pixel, open the page in Chrome (not a tiny in-app browser), double-tap once to start or to focus the page, then use the app as usual. If you feel no vibration, check that vibration is on, that Do Not Disturb is off, and that you have tapped the page after it loaded. This behaviour has been verified from documentation only, not by running your apps on a Pixel or an iPhone for this report.</p>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="gmail">
+      <h2 id="gmail">Gmail</h2>
+      <h3>What it is for</h3>
+      <p>Gmail is your email. It stores messages, lets you send and reply, and can organise mail with labels, filters, categories, snooze and tasks. Official accessibility overview: <a href="https://support.google.com/mail/answer/6115187?hl=en-GB">Accessibility in Gmail</a>. The detailed screen-reader guide is aimed at desktop: <a href="https://support.google.com/mail/answer/90559?hl=en-GB">Use Gmail with a screen reader</a>.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <p>The Gmail Android app works with TalkBack’s standard gestures. Typical flow:</p>
+      <ul>
+        <li>Swipe through the conversation list. Each row should speak the sender, subject, and whether it is unread.</li>
+        <li>Double-tap to open a conversation. Swipe through the messages, then to actions such as Reply, Reply all, Forward, Archive, Delete and more.</li>
+        <li>The Compose button is usually a labelled button. Double-tap, then move to the To, Subject and body fields. Double-tap a field to type, or use Gboard voice typing (on TalkBack 16.2, a two-finger double-tap starts or stops Gboard voice typing while Gboard is open).</li>
+        <li>To start Voice Access and say “Open Gmail”, then “Tap compose”, is a good hands-free path.</li>
+      </ul>
+      <p>If you attach a Bluetooth keyboard, Gmail’s web shortcuts are the richer set. You can also open <a href="https://mail.google.com/">mail.google.com</a> in Chrome and use those shortcuts with TalkBack’s Enhanced keymap and Browse mode.</p>
+      <h3>On iPhone with VoiceOver, and on the web</h3>
+      <p>The Gmail iOS app is compatible with VoiceOver. Use standard VoiceOver gestures. The rotor’s Headings, Links and Form Controls help in longer messages. VoiceOver’s dictation, or the microphone on the keyboard, will type into the body, with the same accuracy limits you already know.</p>
+      <p>On the web, Gmail is at its best. Official advice:</p>
+      <ul>
+        <li>Use Chrome if you can. On a Mac, VoiceOver is the official combination; on iPhone, Safari or Chrome with VoiceOver also works, though the desktop shortcuts are meant for a real keyboard.</li>
+        <li>Turn on Gmail keyboard shortcuts: Settings, See all settings, then Keyboard shortcuts on, and Save changes. You can also press question mark (?) and, if you hear an Enable link, activate it.</li>
+        <li>Treat Gmail as a web application, not a web page: turn VoiceOver Quick Nav off when you want Gmail’s own keys to work (press the Left and Right arrows together until you hear “Quick Nav off”).</li>
+      </ul>
+      <p>The most useful official shortcuts, once they are enabled:</p>
+      <ul>
+        <li>Move between conversations: J and K, or the Up and Down arrows.</li>
+        <li>Open a conversation: Enter or O.</li>
+        <li>Next or previous message inside a conversation: N and P.</li>
+        <li>Expand all messages in a conversation: semicolon.</li>
+        <li>Compose: C. Reply: R. Reply all: A. Forward: F.</li>
+        <li>Send: Ctrl + Enter (or Command + Enter on a Mac keyboard).</li>
+        <li>Archive: E. Mute: M. Snooze: B. Delete: hash (#).</li>
+        <li>Select a conversation in the list: X. Undo: Z. Mark read: Shift + I. Mark unread: Shift + U.</li>
+        <li>Go to Inbox: G then I. Go to Sent: G then T. Go to Drafts: G then D. Go to Tasks: G then K. Search: slash.</li>
+        <li>Return to the inbox, leaving the message as read: U.</li>
+        <li>Add the conversation to Tasks: Shift + T.</li>
+      </ul>
+      <p>Press question mark (?) at any time for the full official list. Complete documentation is in <a href="https://support.google.com/mail/answer/90559?hl=en-GB">Use Gmail with a screen reader</a> and <a href="https://support.google.com/a/users/answer/9298571?hl=en-GB">Google Workspace keyboard shortcuts</a>.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>The mobile apps are fine for quick mail, but long threads, labels and filters are much easier on the web with a keyboard.</li>
+        <li>Smart Reply and Smart Compose can be handy, but they can also steal focus or speak unexpected suggestions. You can turn them down or off in Gmail settings if they get in the way.</li>
+        <li>Promotional tab clutter is easier to hide with filters and labels than by swiping past it every day.</li>
+        <li>If you use VoiceOver Quick Nav and Gmail keys seem dead, turn Quick Nav off, or switch briefly to the rotor and back.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="calendar">
+      <h2 id="calendar">Google Calendar</h2>
+      <h3>What it is for</h3>
+      <p>Calendar holds events, reminders and invitations, and can add travel and booking details from Gmail if you allow that. Official overview: <a href="https://support.google.com/calendar/answer/16271522?hl=en-GB">Accessibility in Google Calendar</a>. Keyboard shortcuts: <a href="https://support.google.com/calendar/answer/37034?hl=en-GB">Use keyboard shortcuts in Google Calendar</a>.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <p>The Calendar app speaks the current view (Day, Week, Month, Agenda or Schedule). Agenda or Schedule is usually the easiest screen-reader view, because it is a list of events rather than a grid. Swipe through events, double-tap to open one, and use the Create or plus button to add an event. TalkBack should speak the title, time and location. Notifications can be set to sound, vibrate, or both, in the event and in app settings. For a reminder you can perceive without looking, a sound or your watch may be more reliable than a silent banner.</p>
+      <p>With a Bluetooth keyboard connected, official help says Calendar’s keyboard shortcuts work on Android as well as on a computer, once shortcuts are enabled.</p>
+      <h3>On iPhone with VoiceOver, and on the web</h3>
+      <p>The Calendar iOS app works with VoiceOver. Agenda-style views are again easier than a month grid. You can also use <a href="https://calendar.google.com/">calendar.google.com</a> in Safari or Chrome.</p>
+      <p>On the web, turn on shortcuts in Settings, Enable keyboard shortcuts, then Save. After that, press question mark (?) for the full list. Shortcuts official help clearly labels:</p>
+      <ul>
+        <li>Create a new event: C.</li>
+        <li>Day view: 1 or D. Week view: 2 or W. Month view: 3 or M. Custom view: 4 or X. Agenda view: 5 or A.</li>
+        <li>Next date range: J or N.</li>
+        <li>Jump to today: T. Go to a specific date: G. Refresh: R. Settings: S.</li>
+        <li>Open an event’s details: E. Delete an event: Backspace or Delete. Save from the details page: Ctrl + S or Command + S.</li>
+      </ul>
+      <p>The official page also lists a previous-period shortcut, a search shortcut and a “return to the grid” shortcut, but those labels did not come through clearly in the text retrieved for this guide, so they are not named here. Press question mark (?) in Calendar to hear them. Keep and Tasks can be opened in a side panel with Ctrl + Alt + full stop or comma on Windows (Command + Option + full stop or comma on a Mac).</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>Month grids are visual. Prefer Agenda or Day view when you want a simple list.</li>
+        <li>All-day events and overlapping events can be announced in a confusing order. Opening the event removes the doubt.</li>
+        <li>Invitation emails in Gmail often have a clearer “Yes, No, Maybe” set of buttons than the Calendar app itself.</li>
+        <li>If you later connect Google Calendar to the assistant you use, “Hey Google, what’s on my calendar today?” is a fast spoken overview, once Calendar permission is granted.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="drive">
+      <h2 id="drive">Google Drive</h2>
+      <h3>What it is for</h3>
+      <p>Drive stores your files and folders, including Docs, Sheets, Slides and ordinary uploads, and lets you share them. Official screen-reader guide: <a href="https://support.google.com/drive/answer/12169158?hl=en-GB">Use Google Drive with a screen reader</a>.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <ul>
+        <li>Swipe to a file, double-tap to open it.</li>
+        <li>To rename, move, share or delete: focus the file, double-tap and hold to select it, then open More actions on the toolbar and choose the action. This is the official Android method.</li>
+        <li>List view is usually easier than a grid of thumbnails, because each row is a clear name plus file type.</li>
+        <li>With a Bluetooth keyboard, Drive’s web-style shortcuts are available; official Android help points to the keyboard shortcut list.</li>
+      </ul>
+      <h3>On iPhone with VoiceOver, and on the web</h3>
+      <p>The Drive iOS app works with VoiceOver. Official help only says to turn VoiceOver on in iOS Settings and use the app as usual.</p>
+      <p>On the web at <a href="https://drive.google.com/">drive.google.com</a>, use Chrome if you can, and treat Drive as a web application (VoiceOver Quick Nav off, or NVDA focus mode, and so on). Press Ctrl + / (or Command + /) for the official shortcut list. Shortcuts official help clearly labels include:</p>
+      <ul>
+        <li>Search Drive: slash.</li>
+        <li>Open the New menu: Alt + N (Control + N on a Mac, according to the published table).</li>
+        <li>Go to the navigation panel, items view, details pane and similar areas with Alt + G then a letter (N, F, I, C, D, and so on). Official help also describes Alt + G then N as moving to the file navigation area.</li>
+        <li>Open a selected item: Enter. Open in a new tab: Ctrl + Enter.</li>
+        <li>Rename: F2. Share: Ctrl + Alt + A. Move: Ctrl + Alt + M. Star: Ctrl + Alt + S. Remove: Delete or hash.</li>
+        <li>Create a Doc: Alt + C then T. A Sheet: Alt + C then S. A Slide deck: Alt + C then P. A folder: Alt + C then F.</li>
+        <li>Upload a file: Alt + C then U.</li>
+      </ul>
+      <p>Arrow keys move the selection. Shift + Space selects or deselects the current item.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>Grid view and thumbnail-only views are poor with a screen reader. Switch to list view.</li>
+        <li>“Shared with me” and multiple “My Drive” shortcuts can make the same file appear twice. Check the file’s details pane if you are unsure who owns it.</li>
+        <li>Opening a Doc from the Drive app on a phone usually hands off to the Docs app, which is good. If it opens a preview instead, look for an Open button.</li>
+        <li>Very large shared folders are faster to search (slash) than to browse.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="docs">
+      <h2 id="docs">Google Docs</h2>
+      <h3>What it is for</h3>
+      <p>Docs is a word processor in the browser and in a mobile app, with comments, suggestions and sharing. Official screen-reader guide for the editors: <a href="https://support.google.com/accessibility/answer/6282736?hl=en-GB">Use Google Docs editors with a screen reader</a>.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <p>The Docs Android app can read and edit, but the web editor in Chrome is the more complete screen-reader experience, especially for headings, comments and long documents. In the app, use TalkBack to move through the document, double-tap to edit, and use the app’s menu for formatting, comments and share. Gboard voice typing is often easier than the on-screen keyboard for a long note.</p>
+      <h3>On iPhone with VoiceOver, and on the web</h3>
+      <p>The iOS app is fine for short edits. For serious writing, open the document at <a href="https://docs.google.com/">docs.google.com</a> or create a new one at <a href="https://docs.new">docs.new</a>.</p>
+      <p>Essential official steps on the web:</p>
+      <ul>
+        <li>Turn on screen reader support if you do not hear “Screen reader support enabled” when the document opens. Shortcut: Command + Option + Z on a Mac, Ctrl + Alt + Z on Windows. Or open the Tools menu (Control + Option + T on a Mac, Alt + Shift + T on Windows or ChromeOS) and tick Turn on screen reader support.</li>
+        <li>Turn on braille support if you use a braille display, or if you want faster character echo: Command + Option + H, or Ctrl + Alt + H. You can also tick it in Tools, Accessibility settings. If Sheets or Slides then feel sluggish, try turning braille support off.</li>
+        <li>Turn VoiceOver Quick Nav off. The VoiceOver modifier (Control + Option) clashes with Docs menu shortcuts. Official options are to change the VoiceOver modifier to Caps Lock, or to use VoiceOver + Tab as a pass-through before typing a menu shortcut, or to search the menus with Option + slash (the tool finder).</li>
+        <li>If menus seem missing, press Ctrl + Shift + F to show them.</li>
+        <li>Open the shortcut list with Command + / or Ctrl + /. Search the menus with Option + / or Alt + /.</li>
+        <li>Move between the menu bar, side panel and main landmarks with Command + Option + full stop (or comma to go the other way). On Windows the equivalent is Ctrl + Alt + full stop or comma.</li>
+        <li>Context menu: Shift + F10.</li>
+        <li>Voice typing on the web (computer): Ctrl + Shift + S, according to the official Workspace shortcut list. Availability depends on the browser and language.</li>
+      </ul>
+      <p>Use headings (Heading 1, Heading 2, and so on) rather than large bold text. Screen readers, including TalkBack and VoiceOver, can then jump by heading. In Docs you apply these from the styles menu or with the official heading shortcuts listed in the in-app shortcut help.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>The mobile apps hide a lot of structure. If navigation by heading fails, open the document on the web.</li>
+        <li>Comments and suggestion mode can be announced late or out of order. There are official “verbalise comment” shortcuts once screen reader support is on (on Windows, hold Ctrl + Alt, then A then C, according to the Workspace list).</li>
+        <li>Other people’s cursors can cause a stream of “so-and-so is editing” messages. Official help explains how to turn collaborator announcements off.</li>
+        <li>If focus jumps out of the document, press Escape, which official help says returns focus to the text.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="sheets">
+      <h2 id="sheets">Google Sheets</h2>
+      <h3>What it is for</h3>
+      <p>Sheets is a spreadsheet: rows, columns, formulae and charts. It uses the same editor accessibility system as Docs. Official starting points: <a href="https://support.google.com/accessibility/answer/6282736?hl=en-GB">Use Google Docs editors with a screen reader</a> and a Sheets-specific follow-on page linked from there, “Use Google Sheets with a screen reader”.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <p>The Sheets Android app will speak the current cell. Moving cell by cell with TalkBack swipes is slow in a large sheet. A Bluetooth keyboard, or the web app, is much better. When you land in a table on the web or in Chrome, set reading controls to Rows and columns, then swipe to move by row or column. TalkBack 16.0 can switch to that control automatically when you enter a table.</p>
+      <h3>On iPhone with VoiceOver, and on the web</h3>
+      <p>Turn on screen reader support, as in Docs (Command + Option + Z or Ctrl + Alt + Z). Open a new sheet at <a href="https://sheet.new">sheet.new</a>. Press Command + / or Ctrl + / for shortcuts. Official tips that apply in the editors:</p>
+      <ul>
+        <li>Arrow keys move between cells once you are in the grid.</li>
+        <li>Enter a cell to edit, and Escape to leave the cell, in the usual spreadsheet way. Confirm the exact keys from the in-app shortcut list if a key does not behave as you expect.</li>
+        <li>TalkBack key + Up or Down moves to the cell above or below when a keyboard is connected; TalkBack key + Left or Right moves between columns, according to the reading-controls help page.</li>
+        <li>If Sheets feels laggy with braille support on, official help says you can turn braille support off.</li>
+      </ul>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>Merged cells, frozen rows and empty regions can confuse navigation. Keep sheets simple, with a header row and no merged cells if you can.</li>
+        <li>Charts are images. They need a title and, where possible, a written summary in a nearby cell. TalkBack’s Describe image may help on a Pixel 9 or later, but a written summary is more reliable.</li>
+        <li>Formula errors are easy to miss if you only listen to displayed values. Check the formula bar for the cell.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="slides">
+      <h2 id="slides">Google Slides</h2>
+      <h3>What it is for</h3>
+      <p>Slides is for presentations. Official editor help is again <a href="https://support.google.com/accessibility/answer/6282736?hl=en-GB">Use Google Docs editors with a screen reader</a>, plus “Use Google Slides with a screen reader” linked from that page. A new deck can be created at <a href="https://deck.new">deck.new</a>.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <p>The Android app will speak slide titles and speaker notes if they exist, and toolbar buttons. Building a deck is much easier on the web. For presenting, the web shortcut Ctrl + F5 starts a presentation, according to the official Workspace shortcut list; confirm on your keyboard from the in-app list with Ctrl + /.</p>
+      <h3>On iPhone with VoiceOver, and on the web</h3>
+      <p>Turn on screen reader support, as in Docs. Use speaker notes. Give every image alt text (in the image options or context menu). Keep reading order logical: official Slides accessibility depends heavily on a sensible object order, because a screen reader walks the objects on the slide.</p>
+      <p>Presenting with a screen reader, and sharing that screen-reader audio into a Meet call, is a special case covered in the <a href="#meet">Meet</a> section. Official Meet help says that sharing system audio with the screen reader also mutes your computer, so you may need a second device or an external microphone to keep hearing VoiceOver or TalkBack yourself.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>A slide that is only a screenshot of a poster is almost useless with a screen reader. Use real text boxes and alt text.</li>
+        <li>Animations and automatic slide timings are hard to follow by ear. Prefer simple, click-to-advance decks.</li>
+        <li>The filmstrip of slide thumbnails can be easier than the canvas when you only need to jump to slide 8 and read its notes.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="keep">
+      <h2 id="keep">Google Keep</h2>
+      <h3>What it is for</h3>
+      <p>Keep is for short notes, checklists, reminders and quick captures, including shared notes. Official screen-reader guide (web-focused): <a href="https://support.google.com/keep/answer/16914649?hl=en-GB">Use Google Keep with a screen reader</a>. The web app is at <a href="https://keep.google.com/">keep.google.com</a>.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <p>The Keep Android app works with standard TalkBack gestures. You will find a Compose or Take a note control, and often a separate new-list action. Double-tap a note to open and edit it. The TalkBack braille keyboard official help names Keep as a typical app in which to try that keyboard. Voice typing and Voice Access (“Open Keep”, “Tap take a note”) both fit this app well.</p>
+      <h3>On iPhone with VoiceOver, and on the web</h3>
+      <p>The iOS app works with VoiceOver for everyday notes. On the web, official advice is to treat Keep as a web application (Quick Nav off) and use its shortcuts. Press Ctrl + / or Command + / for the list. Official shortcuts include:</p>
+      <ul>
+        <li>New note: C (when focus is not already in an edit field). New checklist: I.</li>
+        <li>Next note: J. Previous note: K.</li>
+        <li>Save a note you are composing: Ctrl + Enter or Command + Enter. Escape cancels a new note, or leaves an open note (changes are saved automatically when you leave).</li>
+        <li>Search: slash.</li>
+        <li>Pin or unpin a focused note: F (when you are not editing it).</li>
+        <li>Archive: E. Delete: hash (#). Deleted notes stay in the Bin for seven days.</li>
+        <li>Move a note among others: Shift + J and Shift + K.</li>
+        <li>Toggle a note between paragraphs and a checklist: Ctrl + Shift + 8 or Command + Shift + 8.</li>
+      </ul>
+      <p>Official tip: a Keep list is announced as a tick box, then the item text. Swipe or use the next-item command twice, once for the ticked state and once for the name. Official recommendation: in Settings, consider turning off “Move ticked items to the bottom” if you want ticked items to stay where they were.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>The note grid is visual. List view, or the web app with J and K, is calmer.</li>
+        <li>Drawings and image-only notes need a written title, or they are hard to tell apart.</li>
+        <li>Shared notes can be edited or shared on by the other person. Official help warns you to share only with people you trust. If someone shares a note with you for the first time, look for the confirmation email and the option to open or delete it.</li>
+        <li>Labels on a shared note are not shared with the other person.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="tasks">
+      <h2 id="tasks">Google Tasks</h2>
+      <h3>What it is for</h3>
+      <p>Tasks is a simple to-do list that connects to Gmail and Calendar. You can turn an email into a task (in Gmail, Shift + T on the web) and see tasks in Calendar’s side panel.</p>
+      <h3>On a Pixel with TalkBack, and on iPhone with VoiceOver</h3>
+      <p>There is a Google Tasks app on both Android and iOS, and a Tasks view inside Gmail. Standard screen-reader gestures apply: swipe to a task, double-tap to open or tick it, and use the add-task button to create one. On the web, Tasks also appears at <a href="https://tasks.google.com/">tasks.google.com</a> and in the Gmail, Calendar, Drive and Docs side panel. Official Workspace shortcuts include G then K to go to Tasks from Gmail, and Ctrl + Alt + full stop or comma (Command + Option + full stop or comma on a Mac) to move between the side panel and the main view.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>No dedicated “Use Tasks with a screen reader” page was found in official Google help when this guide was researched. Treat the steps above as general, and prefer the Gmail or Calendar side panel if the standalone app feels unclear.</li>
+        <li>If you already live in Keep, you may not need Tasks as well. Keep checklists plus reminders cover a lot of the same ground. Tasks is the better fit when you want a to-do to sit on a Calendar day, or to be created straight from an email.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="contacts">
+      <h2 id="contacts">Google Contacts</h2>
+      <h3>What it is for</h3>
+      <p>Contacts stores names, phone numbers, email addresses and other details, and is used by Gmail, Phone, Messages and Calendar invitations. Official help: <a href="https://support.google.com/contacts/answer/6174430?hl=en-GB">Use Google Contacts with a screen reader</a>. The web app is at <a href="https://contacts.google.com/">contacts.google.com</a>.</p>
+      <h3>On a Pixel with TalkBack, and on iPhone with VoiceOver</h3>
+      <p>On a Pixel, the Contacts app (or the contacts tab in the Phone app) works with TalkBack. Search is usually the fastest path: find the search field, double-tap, type or dictate a name, then swipe the results. Double-tap a contact to hear numbers and emails, then double-tap the one you want to call or message.</p>
+      <p>On iPhone, the Google Contacts app, or more often the iOS Contacts app if you have Google Contacts syncing, works with VoiceOver in the same way. If you want one address book on both phones during the move, turn on Contacts sync for the Google account in iOS Settings, Contacts, Accounts, and later in Android Settings, Google, so the same list appears in both places.</p>
+      <p>On the web, use search, then Tab through the contact details. Official screen-reader help is aimed mainly at the web and at desktop screen readers.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>Duplicate contacts are common after years of Gmail. The web Contacts app has a merge-duplicates tool that is worth running before you rely on the list for Call Screen (Call Screen uses saved contacts to decide whom not to screen).</li>
+        <li>A contact with only a first name and no number is easy to confuse with another. Add the phone number and an email whenever you can.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="photos">
+      <h2 id="photos">Google Photos</h2>
+      <h3>What it is for</h3>
+      <p>Photos stores, backs up and organises pictures and videos, and can generate descriptions. Official help: <a href="https://support.google.com/photos/answer/6191058?hl=en-GB">Accessibility in Google Photos</a>. Image descriptions are documented for TalkBack in <a href="https://support.google.com/accessibility/android/answer/15341968?hl=en-GB">Use image descriptions in TalkBack</a>.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <ul>
+        <li>Swipe through the photo grid or, often more clearly, use Library, Albums or Search. Search by date, person, or a word such as “receipt” or “dog” if Photos has already recognised that.</li>
+        <li>When TalkBack focus is on a photo, open the TalkBack menu (three-finger tap) and choose Describe image. The first time, you will be asked to turn the feature on.</li>
+        <li>On Pixel 9 and later, including Pixel 10 and 11, automatic image descriptions can run when focus lands on an image. Set this in TalkBack settings, Automatic descriptions, Automatic image descriptions, then All images or Unlabelled images only.</li>
+        <li>You can also assign a TalkBack gesture to Describe image, in TalkBack settings, Gestures or Customise gestures.</li>
+        <li>Add your own caption: open the photo, More (or swipe up for details), then Add a caption. A caption you write yourself is more reliable than a generated one.</li>
+        <li>Official help notes that generated descriptions process the image and then delete it, that results can be inaccurate, and that you accept Google’s terms when you opt in.</li>
+      </ul>
+      <h3>On iPhone with VoiceOver, and on the web</h3>
+      <p>The Google Photos iOS app is officially compatible with VoiceOver. VoiceOver will also read any alt text or captions. Apple’s own Photos app can describe images with VoiceOver Recognition if you turn that on in VoiceOver settings; that is an Apple feature, not a Google one, and it can be useful on the iPhone until you move.</p>
+      <p>On a computer, official help lists NVDA or JAWS with Firefox on Windows, VoiceOver with Safari on a Mac, and ChromeVox with Chrome on ChromeOS. The web app is at <a href="https://photos.google.com/">photos.google.com</a>.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>A dense photo grid is slow to swipe through. Use Search, albums, or the date headings.</li>
+        <li>Generated descriptions can be wrong. Prefer your own captions for anything important, such as a document or a medicine packet.</li>
+        <li>Auto-play of videos in the grid can be distracting. Official path to turn it off: profile picture, Photos settings, Preferences, Photo grid playback.</li>
+        <li>Backup uses data and storage. Check backup settings on Wi-Fi before you let the Pixel upload years of pictures.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="lookout">
+      <h2 id="lookout">Lookout</h2>
+      <h3>What it is for</h3>
+      <p>Lookout is a Google Android app for people who are blind or have low vision. It uses the camera to read text, recognise food labels and some banknotes, describe images, and help you find certain objects. Official help: <a href="https://support.google.com/accessibility/android/answer/9031274?hl=en-GB">Use Lookout to explore your surroundings</a>. It is not pre-described as an iPhone app; on iPhone, the closest built-in tools are VoiceOver Recognition, the Magnifier, and Lookout is not the official path. After you move to a Pixel, Lookout becomes one of your main everyday tools.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <p>Install “Lookout – assisted vision” from the Play Store, or say “Hey Google, start Lookout”. Allow the camera. Hold the phone so the camera faces outwards. Official help lists seven modes, switched from Select mode at the top left (double-tap with TalkBack):</p>
+      <ul>
+        <li>Text: point at text to hear it read. Rotate between portrait and landscape, or move closer or further, if reading is unclear. You can set language to Detect language.</li>
+        <li>Explore (beta): hears objects and text as you pan. Official help says this mode is less accurate than the others.</li>
+        <li>Food labels: scan a barcode or the front of a food pack. Officially available only in some countries; the first time, it may download extra data and then work offline. You can set the country in the mode.</li>
+        <li>Documents: read a full page, with spoken guidance to line the page up. There is a Take snapshot button, which official help says can sometimes read better than the live view. Reading tools can change speed, voice, font and contrast.</li>
+        <li>Currency: reads one banknote at a time. Officially only US dollars, euros or Indian rupees, and not coins. This is important in the UK: British pounds are not on that official list, so do not rely on Lookout to identify UK notes.</li>
+        <li>Images: capture, upload or share a picture and hear a description, including text and objects. Detailed descriptions are available in English. In the US, UK and Canada, if you use English, you can ask follow-up questions by voice or keyboard. Lighting, blur and a busy picture can all reduce accuracy.</li>
+        <li>Find: choose from a list (default is seating and tables; also doors and windows, cups, bottles and cans, utensils and tableware, vehicles, and bathroom). Pan slowly. Official help says most phones can give direction and distance to the object.</li>
+      </ul>
+      <p>Other official tips:</p>
+      <ul>
+        <li>The camera on/off control vibrates when you turn the camera on, if haptic feedback is enabled in Lookout settings.</li>
+        <li>Recent results can be reviewed and shared, but they are deleted when you close the app.</li>
+        <li>You can set a torch to come on automatically, change Lookout’s own text-to-speech (separate from the system voice), and turn off Images mode data collection in Lookout settings if you prefer.</li>
+      </ul>
+      <h3>On iPhone with VoiceOver, for now</h3>
+      <p>Lookout is an Android app. Until you have a Pixel, use iPhone tools for the same jobs: VoiceOver Recognition, Magnifier, the Camera app with VoiceOver, and, for some document reading, a third-party app you already trust. This guide does not recommend a paid replacement; Lookout itself will cover a lot of this once you move.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>Do not use Lookout, or Gemini guided vision, as a substitute for a cane, a guide, or safe crossing practice. Official guided-vision help makes a similar warning, and it applies here too.</li>
+        <li>UK banknotes are not in the official Currency list. Use another method for cash.</li>
+        <li>Food labels and some other modes depend on country data. If a mode asks to download data, do that on Wi-Fi.</li>
+        <li>Explore mode is officially beta and less accurate. Prefer Text, Documents, Images or Find when you need a reliable answer.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="maps">
+      <h2 id="maps">Google Maps</h2>
+      <h3>What it is for</h3>
+      <p>Maps is for search, walking, public transport and exploring what is around you. For you, the important pieces are walking navigation with detailed voice guidance, and hearing nearby places through Lens in Maps. Official Android accessibility page: <a href="https://support.google.com/maps/answer/6396990?co=GENIE.Platform%3DAndroid&amp;hl=en-GB">Accessibility in Google Maps (Android)</a>. The original detailed voice guidance announcement is in <a href="https://blog.google/products-and-platforms/products/maps/better-maps-for-people-with-vision-impairments/">Voice guidance in Maps, built for people with impaired vision</a>. Google later said the feature and Lens-in-Maps screen-reader support were expanded globally in supported languages, in <a href="https://blog.google/company-news/outreach-and-initiatives/accessibility/ai-accessibility-update-gaad-2024/">GAAD 2024: New AI accessibility updates</a>.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <p>Turn TalkBack on first, then open Maps. Search works like other Google apps: find the search field, double-tap, type or dictate a place, then swipe the results and double-tap one. For directions, choose Walking or Public transport as needed.</p>
+      <h4>Detailed voice guidance for walking</h4>
+      <p>This is the feature built for people with visual impairments. Official and later Google descriptions say it tells you that you are on the correct route, the distance and direction to the next turn, when you are approaching a large intersection, and when you are being rerouted. To turn it on, official and widely repeated Google instructions are:</p>
+      <ul>
+        <li>Open Google Maps.</li>
+        <li>Open your profile picture, then Settings, then Navigation.</li>
+        <li>Under Walking options, turn on Detailed voice guidance.</li>
+      </ul>
+      <p>Do this at home, before you need it on a bus journey or an unfamiliar road. Keep spoken volume high, and consider an earpiece that does not block environmental sound. Detailed guidance is a support, not a replacement, for a cane, a guide, or listening to the street.</p>
+      <h4>Lens in Maps, for “what is around me”</h4>
+      <p>Official Android help, not Look Around, is the documented screen-reader way to hear nearby places:</p>
+      <ul>
+        <li>In the Maps search bar, activate Lens.</li>
+        <li>Hold the phone up and point the camera at buildings, shops or signs.</li>
+        <li>Pan slowly. TalkBack should speak the name and category of places, and how far away they are, so you can orient yourself.</li>
+        <li>Double-tap a place for more details. Category chips such as restaurants or café can narrow the search.</li>
+        <li>Official limits: TalkBack must be on, and Lens in Maps is not supported on tablet-sized devices.</li>
+      </ul>
+      <p>Look Around (the immersive street-level view) is a different feature. This guide could not verify solid, official TalkBack support for Look Around itself. Until that is documented clearly, use Lens in Maps and walking guidance instead, and treat Look Around as unproven for your use. See <a href="#unverified">What could not be verified</a>.</p>
+      <h4>Public transport and accessible places</h4>
+      <p>For a wheelchair-accessible transit route: enter the destination, choose the place, choose Directions and Public transport, then Options, and under Routes turn on Wheelchair-accessible. For places, official Android help says you can turn on Emphasise accessibility info in Settings, App and display, then look for wheelchair information on a place’s About tab. That information is mainly about wheelchair access (entrance, toilets, seating, parking, lift). It is still useful background, but it is not a vision-specific rating.</p>
+      <h3>On iPhone with VoiceOver, and on the web</h3>
+      <p>The Maps iOS app works with VoiceOver, and Google’s 2024 announcement said detailed voice guidance and Lens-in-Maps screen-reader support were expanded to Android and iOS in supported languages. Use the same Settings, Navigation, Walking options path on iPhone. The web app at <a href="https://maps.google.com/">maps.google.com</a> has keyboard navigation (Tab to the map, arrows to move, plus and minus to zoom, Ctrl + / for shortcuts) but it is a poor substitute for spoken walking guidance on a phone.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>The map canvas itself is visual. Do not try to “read the map”. Use search, the results list, the directions list, and spoken guidance.</li>
+        <li>GPS can be wrong between tall buildings or after a bus ride. If the voice says you have left the route and that does not match what you feel, stop and check, rather than following a bad reroute.</li>
+        <li>With TalkBack, map gestures change. Official help describes one-finger drag and double-tap-then-drag to zoom for sighted or low-vision use; with TalkBack you will more often rely on buttons, search and the directions sheet. Two-finger gestures are reserved for scrolling and system actions, so casual map dragging is easy to get wrong. Prefer search and the list.</li>
+        <li>Offline maps can help when the signal drops, but detailed guidance still depends on location. Download an offline area for your part of London or the UK before you travel.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="youtube">
+      <h2 id="youtube">YouTube and YouTube Music</h2>
+      <h3>What they are for</h3>
+      <p>YouTube is for videos. YouTube Music is for music and, since the closure of Google Podcasts, for podcasts as well. Official screen-reader help for the website: <a href="https://support.google.com/youtube/answer/189278?hl=en-GB">Use YouTube with a screen reader</a>. Official keyboard shortcuts: <a href="https://support.google.com/youtube/answer/7631406?hl=en-GB">Keyboard shortcuts for YouTube</a>.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <p>The YouTube and YouTube Music apps work with standard TalkBack gestures. Search is the reliable way in. When a video or track is playing, two-finger double-tap (TalkBack’s media gesture) should play or pause, as it does in other apps. In the player, look for captions or subtitles, playback speed, audio descriptions where the video provides them, and, on Android 13 and later, the system Audio description setting in Accessibility settings. Official Photos accessibility help notes that audio description availability varies by video and provider; the same limit applies on YouTube.</p>
+      <p>YouTube Music is also where your podcast subscriptions now live. You can search for a show, add it, resume where you left off, and download episodes. Official help says podcast episodes can be downloaded whether or not you have YouTube Music Premium, though some episodes may not offer an audio-only download. Music downloads for offline listening generally need Premium. See <a href="#podcasts">Google Podcasts replacement</a>.</p>
+      <h3>On iPhone with VoiceOver, and on the web</h3>
+      <p>The iOS apps work with VoiceOver. On the web at <a href="https://www.youtube.com/">youtube.com</a>, official shortcuts are automatically available. Official help says that in the newer computer layout you must first activate the video player before the player keys work. Press Shift + ? for the list. Official shortcuts include:</p>
+      <ul>
+        <li>Play or pause: K, or Spacebar when the seek bar is selected.</li>
+        <li>Seek back 10 seconds: J. Seek forward 10 seconds: L. Arrow keys on the seek bar seek by 5 seconds.</li>
+        <li>Mute: M. Full screen: F (Escape or F again to leave). Captions: C.</li>
+        <li>Speed up: greater-than sign. Slow down: less-than sign.</li>
+        <li>Numbers 1 to 9 jump to 10% through 90% of the video. 0 jumps to the start.</li>
+        <li>Search: slash. Next video: Shift + N. Previous video in a playlist: Shift + P. Miniplayer: I.</li>
+        <li>Next or previous chapter: Ctrl + Right or Left arrow on Windows, Option + Right or Left arrow on a Mac.</li>
+      </ul>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>Autoplay and suggested videos can move focus or start sound you did not ask for. Turn autoplay off when you find the control, and consider pausing with a two-finger double-tap as soon as unexpected sound starts.</li>
+        <li>Not every video has good captions or an audio description. For talks and interviews, captions (C on the web, or the captions button in the app) are worth turning on even if you are listening, because you can also read them later.</li>
+        <li>The YouTube Music app has had TalkBack complaints in independent reviews in earlier years (unlabelled controls, awkward navigation). If a control is unlabelled, try TalkBack’s screen search, or use the YouTube Music website, or ask Voice Access to “show numbers”. This guide has not re-tested the 2026 app on a Pixel.</li>
+        <li>Background play on YouTube itself may require a Premium subscription. YouTube Music is the intended background player for music and podcasts.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="podcasts">
+      <h2 id="podcasts">Google Podcasts replacement</h2>
+      <h3>What changed</h3>
+      <p>Google Podcasts has been closed. YouTube’s official migration post, <a href="https://blog.youtube/news-and-events/migrating-your-podcasts/">Migrating Your Podcasts Shows From Google Podcasts</a> (7 December 2023), said Google Podcasts would stop being available for listening in the United States through March 2024, with migration or export of subscriptions available through July 2024. Contemporary reporting described 2 April 2024 as the last listening day, and the web app also closed. The official transfer window has now passed.</p>
+      <p>The replacement is YouTube Music (and the podcast pages on YouTube itself). You can:</p>
+      <ul>
+        <li>Search for a show in YouTube Music and subscribe or add it to your library.</li>
+        <li>Resume where you left off.</li>
+        <li>Download episodes for offline listening. Official YouTube Music help says you can download podcasts regardless of Premium membership, though some shows may not offer audio-only download, and Smart Downloads are not yet available for podcasts, in the help retrieved for this guide.</li>
+        <li>Add a show that is not already on YouTube by its RSS feed URL, which official YouTube posts described as part of the Music library.</li>
+      </ul>
+      <h3>If you still need an old subscription list</h3>
+      <p>The official migration tool and OPML export were only offered until July 2024. If you did not export then, you will need to search for your shows again in YouTube Music, or in another podcast app of your choice. This guide cannot revive the old Google Podcasts app.</p>
+      <h3>Accessibility notes</h3>
+      <p>Use YouTube Music with TalkBack or VoiceOver as described in the previous section. Playback speed, a proper heading structure in the library, and a clear “episodes” list matter more than the old Podcasts interface did. If a particular show’s YouTube video-podcast player is harder than the audio player in Music, prefer the Music app’s audio episode list.</p>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="gemini">
+      <h2 id="gemini">Google Assistant and Gemini</h2>
+      <h3>What they are for</h3>
+      <p>Gemini is Google’s current AI assistant. On Pixel 9 and later, including Pixel 10 and 11, Gemini is the default assistant. Official help: <a href="https://support.google.com/pixelphone/answer/15283615?hl=en-GB">Use Gemini, your AI assistant, on your Pixel phone</a>. You can talk, type, use the camera, and, with permission, connect extensions such as Gmail, Maps, Drive and Keep.</p>
+      <p>Google Assistant is the older assistant. Some devices and some features still mention it. On a current Pixel, “Hey Google” is intended to open Gemini. Official Gemini help also notes that some features that existed in Assistant are not available in the Gemini app, and that some routine actions are more limited.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <ul>
+        <li>Say “Hey Google”, or hold the power button, to open Gemini. You can change the button in Gemini settings. If “Hey Google” does not work, check that Hey Google and Voice Match are on.</li>
+        <li>Useful spoken requests include turning TalkBack on or off, setting timers and alarms, sending a message, calling a contact, opening an app, asking what is on your calendar, and starting Lookout or Voice Access.</li>
+        <li>You can ask about what is on the screen: official Pixel help says that when Gemini is your mobile assistant, you can activate it over another app, choose Ask about screen or Ask about page, and ask questions, including a summary of a web page.</li>
+        <li>TalkBack 16.0’s Ask Gemini and Describe screen options, in English, are in the TalkBack menu.</li>
+        <li>Guided vision in Gemini Live, described in the Pixel section above, can talk with you about what the camera sees. Official help says it is rolling out slowly, can make mistakes, and must not be used for navigation or obstacle detection.</li>
+      </ul>
+      <h3>On iPhone with VoiceOver, for now</h3>
+      <p>The Gemini app is available on iPhone. VoiceOver will read the conversation. “Hey Google” on iPhone may still be handled by the Google app or by Gemini, depending on what you have installed and allowed. Siri remains the system-wide assistant on iOS and is often more reliable for phone-level tasks such as setting a timer or sending a text, while Gemini is stronger for longer questions. You do not have to choose only one.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>Official help is clear: do not rely on Gemini for medical, legal or financial advice, and double-check facts. That includes image and scene descriptions.</li>
+        <li>Gemini may ask follow-up questions when a routine needs a time or a name. If you want a simple timer, a short, complete sentence (“Set a timer for 10 minutes”) works better than a vague one.</li>
+        <li>Two wake-words and TalkBack speaking at once can be chaotic. If Gemini starts listening while TalkBack is mid-sentence, wait, or pause TalkBack with a two-finger tap, then speak.</li>
+        <li>Some older Assistant “visual cards” (weather graphs, maps) are no longer shown in the same way. Official help says Gemini may answer those with voice and text only.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="chrome">
+      <h2 id="chrome">Google Chrome</h2>
+      <h3>What it is for</h3>
+      <p>Chrome is Google’s web browser, and the best browser to pair with TalkBack and with Google’s web apps. Official help: <a href="https://support.google.com/accessibility/android/answer/2633135?hl=en-GB">Use TalkBack to browse the web with Chrome</a>. Many of your own web apps will be opened here.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <p>Use reading controls in Chrome just as you do elsewhere: three-finger swipe (or up-then-down) to choose Headings, Links, Controls, Characters, Words, Lines or Paragraphs, then swipe down or up to jump. You can add finer controls (heading levels, buttons, lists, tables, visited links, and so on) in TalkBack’s customise reading controls list.</p>
+      <p>When a simplified view is available, TalkBack should notify you. You can also turn on Simplified view for web pages in Chrome Settings, Accessibility. When it is available on a page, explore near the top for View simplified page, then double-tap.</p>
+      <p>With a Bluetooth keyboard, use TalkBack’s Enhanced keymap and Browse mode (double-press the TalkBack key). This is the closest Android experience to a desktop screen reader on a web page. Smart browse mode will let you type in form fields without fighting letter-jump commands.</p>
+      <p>For your web apps and vibration, see <a href="#tb-vibration">How web vibration works in Android Chrome</a>. Open those apps in full Chrome, not inside another app’s mini browser, and double-tap the page once if you expect vibration.</p>
+      <h3>On iPhone with VoiceOver, and on a computer</h3>
+      <p>On iPhone, Safari is the most tested VoiceOver browser. Chrome for iOS also works with VoiceOver, but it uses Apple’s engine, so it does not gain Android-only features such as the Vibration API. On a computer, Chrome with a screen reader is the officially preferred combination for Gmail, Drive, Docs, Meet and Keep.</p>
+      <p>Chrome itself has many keyboard shortcuts (Ctrl + T or Command + T for a new tab, Ctrl + L or Command + L for the address bar, Ctrl + W to close a tab). Official Workspace shortcut lists include a Chrome section. They are not repeated in full here; they work the same whether or not TalkBack is on, except that TalkBack still needs its modifier for screen-reader navigation.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>Pages that are mostly canvas, ads or unlabelled buttons are hard in any screen reader. If a site is messy, try Chrome’s simplified view, or ask Gemini to “ask about page” and summarise.</li>
+        <li>Multiple tabs are easier to manage if you keep a short stack and name them by opening clear URLs, rather than leaving dozens open.</li>
+        <li>Sign-in walls and cookie banners often take focus when a page loads. Navigate the banner first and accept or reject it, or you may feel stuck.</li>
+        <li>If a page’s own keyboard shortcuts clash with TalkBack, turn Browse mode off (double-press the TalkBack key) while you use the site’s keys, then turn it back on.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="meet">
+      <h2 id="meet">Google Meet</h2>
+      <h3>What it is for</h3>
+      <p>Meet is Google’s video-call app, also used from Calendar invitations and Gmail. Official screen-reader guide: <a href="https://support.google.com/meet/answer/15738543?hl=en-GB">Use Google Meet with a screen reader</a>.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <p>The Meet Android app works with TalkBack. Before you join, allow the microphone and, if you want to be seen, the camera. After you join, look for buttons to mute, turn the camera on or off, raise a hand, open chat, and leave. Live captions can be turned on with the captions control. With a Bluetooth keyboard, official Android Meet shortcuts include:</p>
+      <ul>
+        <li>Mute or unmute: Ctrl + D (or Command + D).</li>
+        <li>Camera on or off: Ctrl + E (or Command + E).</li>
+        <li>Captions: C.</li>
+        <li>Chat: Ctrl + Alt + C.</li>
+        <li>Raise or lower your hand: Ctrl + Alt + H.</li>
+      </ul>
+      <h3>On iPhone with VoiceOver, and on the web</h3>
+      <p>The iOS app works with VoiceOver. On the web, official help recommends Chrome with NVDA or JAWS on Windows, ChromeVox on ChromeOS, or VoiceOver on a Mac, and says you should navigate Meet as a web page (the screen reader’s default). Official computer shortcuts include the same mute and camera keys, plus Ctrl + Alt + C for chat and Ctrl + Alt + P for the participant list (Control + Command + C or P on a Mac). Press Shift + ? in a meeting for the official list. Escape closes a sidebar.</p>
+      <p>To join: open the Meet link from Calendar or email, then activate Join now. To leave, you can close the tab (Ctrl + W or Command + W) or use the leave button. If a meeting is about to start and you are signed in, official help says the landing page may already focus the meeting; press Enter to join.</p>
+      <h4>Presenting with a screen reader</h4>
+      <p>Official help is important here. Ordinary “Present now” does not share system or screen-reader audio. If you need other people to hear your screen reader, official steps (web) are: use Other ways to join, then Present, share the screen, and turn on “Also share system audio. This device will be muted to prevent feedback.” That mutes your computer. To keep hearing the screen reader yourself, official advice is to join with a second device, or to use an external microphone placed so that it picks up both your voice and the speakers. This is fiddly; practise before a real meeting.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>TalkBack and the remote person’s voice can overlap. A headset, and a slightly slower TalkBack speech rate during the call, helps. You can pause TalkBack with a two-finger tap while someone is speaking.</li>
+        <li>The tiled video grid is visual. The participant list is the reliable way to know who is present.</li>
+        <li>You may be asked to allow the camera and microphone in a browser dialogue the first time. If Join now seems to do nothing, check for that dialogue.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="messages">
+      <h2 id="messages">Google Messages</h2>
+      <h3>What it is for</h3>
+      <p>Google Messages is the standard SMS and RCS texting app on a Pixel. Official help: <a href="https://support.google.com/messages/answer/6105764?hl=en-GB">Make Google Messages more accessible</a>. Official help also notes that RCS is now available for texting between Android and iPhones, with a separate article on how to turn on RCS on Android.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <p>Official help says you can use TalkBack to send and receive text messages, pictures, videos and voice recordings, with standard TalkBack gestures. Open a conversation, swipe to the latest messages, double-tap the compose field, type or dictate, then double-tap Send. Voice Access commands such as “Open Messages”, “Tap compose” and “Send” (or Gboard’s “Send” voice command while dictating) make this more hands-free.</p>
+      <p>If you use the TalkBack braille keyboard in Messages, remember the official quirk: on some devices, after you hide that keyboard, the Back button may not work. Go to the Home screen and continue from there.</p>
+      <h3>On iPhone with VoiceOver, for now</h3>
+      <p>On iPhone, the usual app is Apple Messages, not Google Messages. VoiceOver works well there. If you move to a Pixel, tell frequent contacts that your texts will still arrive as ordinary messages, and that RCS may give you typing indicators and better group chats when both sides support it. iMessage features (tapbacks, some group effects, end-to-end iMessage encryption) will not follow you to Android. SMS and RCS still work. For some contacts, WhatsApp or another cross-platform app may remain the smoother path; that is a personal choice, not a Google requirement.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>Official help mentions pinch-to-zoom to enlarge a message, which is a low-vision gesture and not a TalkBack one. With TalkBack, use the system font size instead, in Settings, Accessibility, Font size, if you also have some residual sight; otherwise ignore zoom and rely on speech.</li>
+        <li>Picture messages need a description. TalkBack’s Describe image, or a caption from the sender, is the way to hear them.</li>
+        <li>Verification codes in texts are useful for 2-Step Verification, but be careful that TalkBack does not speak them aloud in a public place. Hide the screen if needed.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="phone">
+      <h2 id="phone">Phone and Call Screen</h2>
+      <h3>What it is for</h3>
+      <p>The Phone app places and receives calls. On a Pixel, Call Screen can answer first, ask who is calling and why, and show you a live transcript before you pick up. Official help: <a href="https://support.google.com/pixelphone/answer/9118387?hl=en-GB">Screen your calls before you answer them</a>. Official help says Call Screen works on the device and does not use Wi-Fi or mobile data, and that automatic screening is available in the UK (and in Australia, Canada, Ireland and the US). Manual screening is available in those countries and in several others. A UK SIM is required for the UK feature.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <ul>
+        <li>Answering or hanging up with TalkBack: official TalkBack gestures include a two-finger double-tap to answer or hang up. You can also find the Answer and Decline buttons and double-tap one.</li>
+        <li>To set up Call Screen: open Phone, More, Settings, then Spam and Call Screen or Call Screen, then Call Screen. Choose a protection level. Official help for Pixel 7 and above describes automatically screening spam, possibly faked numbers, and first-time callers. Numbers in your contacts are not screened, so keep that address book in good shape.</li>
+        <li>When a call is being screened you get a notification such as “Screening unknown number”. Open it to hear or read the live transcript, then decide to answer, hang up, or send a reply.</li>
+        <li>Manual screening: when a call arrives, activate Screen call.</li>
+        <li>Official help says that on Pixel 11 and later, a more conversational set of call actions is available only with a US SIM and the device language set to English. On Pixel 10 and earlier, and on Pixel 11 outside the US or set to another language, you get suggested replies such as “Is it urgent?”, “Report as spam”, “I’ll call you back”, and “I can’t understand”. AI replies can be turned on; they are generated on the device and official help says they may be inaccurate.</li>
+        <li>Screened calls store a transcript on the phone. You can also turn on Save Call Screen audio. These stay on the device; official help says they are not saved to your Google Account.</li>
+      </ul>
+      <p>Other official limits: Call Screen may not fully understand the caller; it should be turned off if you use call forwarding, because screened calls will not be forwarded; it may not run automatically while roaming, or when some headphones or Bluetooth devices are connected; and it does not work with some third-party call-recording apps.</p>
+      <h3>On iPhone with VoiceOver, for now</h3>
+      <p>iPhone has Silence Unknown Callers and, on recent iOS versions, its own call-screening tools. Those are Apple features, not Call Screen. When you move, Call Screen on a UK Pixel is the Google equivalent to explore. Until then, the iOS Phone app with VoiceOver, and Silence Unknown Callers if you want it, will do.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>A two-finger double-tap is also the play/pause media gesture. If music is playing when a call arrives, be aware that the same gesture may apply to the call. Official help also says the phone may stop media while it screens a call.</li>
+        <li>If you cannot find Screen call, official help says to open the Call Screen settings and follow any extra on-screen steps; if there are no Call Screen settings at all, the device does not support it.</li>
+        <li>Do not rely on Call Screen to catch every scam call.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="recorder">
+      <h2 id="recorder">Recorder and transcription</h2>
+      <h3>What it is for</h3>
+      <p>Recorder is a Pixel app that records audio and can transcribe it, search the recording, and, on recent Pixels, summarise it. Official help: <a href="https://support.google.com/pixelphone/answer/16267698?hl=en-GB">Create, edit and manage transcriptions</a>.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <ul>
+        <li>Open Recorder, activate the record button, then stop when you are finished. TalkBack should speak these controls. A two-finger double-tap can also start or stop media, but use the on-screen record button until you are sure how the gesture behaves in this app. That gesture interaction has not been tested for this guide.</li>
+        <li>After a recording, switch from Audio to Transcript to read or hear the text. You can search inside a recording for a word or for sounds such as music or applause.</li>
+        <li>Real-time transcription languages on Pixel 6 and later officially include English (United Kingdom), as well as English (US, Australia, India, Ireland, Singapore) and several other languages. You can set Recorder to detect language; if more than one language is spoken, it transcribes the one used most.</li>
+        <li>You can edit a word in a transcript, and re-transcribe a recording in another language (re-transcribe may use Google’s servers).</li>
+        <li>On Pixel 8 and later, a Summarise button can produce an AI summary of a transcript in certain languages, including English. Official help says this uses a large language model in a secure cloud environment, works best on recordings from about five minutes to one hour, and can refuse some content.</li>
+      </ul>
+      <h3>On iPhone with VoiceOver, for now</h3>
+      <p>Recorder is a Pixel app. On iPhone, Apple’s Voice Memos can record, and some iOS versions include transcription, but that is not the Google Recorder. If you already rely on another iPhone recording app, keep using it until you move, then try Recorder on the Pixel for English (UK) transcripts.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>Transcripts are imperfect, especially with overlapping speech, a pub, or a strong accent. They are a start, not a legal record.</li>
+        <li>Always tell people you are recording, and follow UK law and courtesy.</li>
+        <li>Summaries can be wrong. Read or listen to the transcript if the summary matters.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="live-transcribe">
+      <h2 id="live-transcribe">Live Transcribe</h2>
+      <h3>What it is for</h3>
+      <p>Live Transcribe captures speech and other sounds and shows them as text, so you can follow a conversation. It is aimed first at people who are deaf or hard of hearing, but it is also useful if you want a live written record, or to read what someone said again. Official help: <a href="https://support.google.com/accessibility/android/answer/9158064?hl=en-GB">Use Live Transcribe</a>. It is already installed on Pixel phones.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <ul>
+        <li>Open it from Settings, Accessibility, Live Transcribe, Open Live Transcribe, and allow the microphone. You can also assign an accessibility shortcut.</li>
+        <li>Hold the microphone towards the person speaking. You can type a reply, have a message read aloud, and, officially, use sign-to-text for American Sign Language into English with the front camera.</li>
+        <li>It can label other sounds, such as laughing, a doorbell or music. You can hide or show those labels, and you can ask it to vibrate when a name you specify is spoken.</li>
+        <li>Languages can be downloaded for offline use on Pixels running Android 12 or later. Official help says offline transcription can be kept on even when you have a signal, if you prefer.</li>
+        <li>History can be kept for up to three days, then it is deleted. If history is off, transcripts are deleted after 24 hours. You can copy text out if you need to keep it.</li>
+        <li>On Pixel Fold models, including officially Pixel 10 Pro Fold and Pixel 11 Pro Fold, Dual Screen mode can show captions on the outer screen.</li>
+      </ul>
+      <p>Official help says Google does not intend Live Transcribe for US HIPAA medical obligations. In any country, do not treat it as a professional medical transcription tool.</p>
+      <h3>On iPhone with VoiceOver, for now</h3>
+      <p>Live Transcribe is an Android app. Apple has Live Speech, Live Captions and similar tools on recent iOS versions. Those are separate, and are not covered in detail here.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>Accuracy drops in noise, or with several speakers. An external microphone is officially supported and can help.</li>
+        <li>TalkBack will try to read the caption stream, which can be overwhelming. You may prefer to leave TalkBack paused (two-finger tap) and read the captions by exploring, or to use Live Transcribe without expecting every new line to be spoken.</li>
+        <li>This “TalkBack plus rolling captions” behaviour has not been tested for this guide, so try it at home first.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="gboard">
+      <h2 id="gboard">Gboard voice typing</h2>
+      <h3>What it is for</h3>
+      <p>Gboard is Google’s keyboard. Voice typing lets you dictate into any text field. On Pixel 6 and later, advanced voice typing can add punctuation automatically, insert emoji, and obey voice editing commands, and official help says the ordinary dictation stays on the device (except when you use certain correction features). Official help: <a href="https://support.google.com/gboard/answer/11197787?hl=en-GB">Use advanced voice typing features</a>.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <ul>
+        <li>Focus a text field, double-tap, then find the microphone key on Gboard and double-tap it. On TalkBack 16.2, official help says you can also double-tap with two fingers, while Gboard is in use, to start or stop voice typing. Note that a two-finger double-tap is also the system play/pause and answer-call gesture, so try this in a note first, not in the middle of a call.</li>
+        <li>Turn advanced features on or off in Gboard Settings, Voice typing.</li>
+        <li>Official commands include: “Delete last word”, “Clear” (last sentence), “Clear all”, “Send”, “Next” (next form field), saying an emoji name such as “smiley emoji”, and “Stop”.</li>
+        <li>Double-tap the microphone to keep it listening across several messages. Tap it again, close the keyboard, or say “Stop” to end.</li>
+        <li>If a word is wrong, select it and speak, type, or spell a correction, or choose a suggestion.</li>
+        <li>Automatic language detection can be turned off in Voice typing settings if it hops language by mistake. Advanced voice typing officially supports English, French, German, Italian, Japanese and Spanish among its languages. Your Gboard language and device language may need to match, according to official troubleshooting.</li>
+      </ul>
+      <p>Important UK limits, from official help:</p>
+      <ul>
+        <li>“Fix it” (proofreading) is officially Pixel 8 or later, English only, and United States, and needs a network connection. Do not expect this on a UK Pixel unless Google later expands it.</li>
+        <li>Detailed edits such as “Insert X before Y” or “Change apples to oranges” are officially Pixel 8 and later and English (US). The same caution applies.</li>
+        <li>Voice commands for writing tools (proofread, rephrase, formalise, shorten, and so on) are officially Pixel 9 excluding 9a, and later, in several languages including English. A Pixel 10 or 11 may include this, but this has not been verified on a UK device for this guide.</li>
+      </ul>
+      <p>If advanced voice typing is missing just after you set up a new Pixel, official help says it can take a few hours, and that you should connect to Wi-Fi, restart, and leave the phone charging overnight if needed.</p>
+      <h3>On iPhone with VoiceOver, for now</h3>
+      <p>Gboard exists on iPhone, but Apple’s own dictation is what you have been using, and you already know it can mishear words such as “fold”. On iPhone you can also try Voice Control, and in some apps a Bluetooth keyboard. When you move to a Pixel, Gboard advanced voice typing plus Voice Access plus TalkBack voice commands give you more than one way to recover when a word is misheard: you can say “Delete last word”, type the word, or switch to an emergency number or prefix in a particular app.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>Dictation will still mishear accents, tired speech, or a noisy bus. Have a backup: a short typed correction, Voice Access “type” commands, or the TalkBack braille keyboard if you use braille.</li>
+        <li>Automatic punctuation is helpful but can be turned off in Gboard voice typing settings if it inserts too many full stops.</li>
+        <li>Do not confuse Gboard voice typing (writes text) with Voice Access (controls the phone) or TalkBack voice commands (controls the screen reader). They can complement each other, but starting all three at once is noisy.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="wallet">
+      <h2 id="wallet">Google Wallet</h2>
+      <h3>What it is for</h3>
+      <p>Google Wallet holds payment cards, passes, tickets and similar items, and lets you pay contactless with a Pixel (and, where supported, with a Fitbit). Official accessibility help: <a href="https://support.google.com/wallet/answer/16244062?hl=en-GB">Use accessibility features on the Google Wallet website and in the app</a>. Wallet is available in the UK, including contactless payments, subject to your bank supporting it.</p>
+      <h3>On a Pixel with TalkBack</h3>
+      <p>Official help says the Wallet website works with TalkBack, and that the service supports screen readers, braille displays provided by the operating system, keyboard and switch access, and voice typing. In the Android app, expect standard TalkBack behaviour: swipe through your passes and cards, double-tap to open one, and use the add button to add a card or pass. For contactless payment, you usually unlock the phone and hold the back of it to the reader. Practise paying a small amount with TalkBack at a quiet till first, so that the double-tap-to-unlock or authentication step is familiar before you are in a queue.</p>
+      <p>Exact till-side gestures can vary with the bank, whether a PIN is required, and whether you use a fingerprint or the phone PIN. Official Wallet accessibility help is written at a high level and does not spell out every TalkBack step at a card reader, so treat the first payment as a test.</p>
+      <h3>On iPhone with VoiceOver, for now</h3>
+      <p>Apple Wallet and Apple Pay are the iPhone equivalents, and they work with VoiceOver. Google Wallet on iPhone is more limited than on Android and is not a full Apple Pay replacement. When you move, you will add your cards again in Google Wallet on the Pixel. Your bank must support Google Pay in the UK; most large UK banks do, but check with yours.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>Payment terminals can time out while TalkBack is still speaking. If that happens, ask the cashier to wait, then authenticate and hold the phone still.</li>
+        <li>Keep a physical card as a backup while you learn the new phone.</li>
+        <li>Passes with only a QR code are visual unless they also have a scannable barcode the reader can find, or a confirmation number you can speak. If a venue is awkward, ask if they can scan or look up the booking from your name or email.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="fit">
+      <h2 id="fit">Google Fit and Fitbit</h2>
+      <h3>What they are for</h3>
+      <p>Google Fit tracks activity on the phone. Fitbit is Google’s wearable brand, with watches and a phone app, and in the UK you can also use Google Wallet on supported Fitbit devices for contactless payment. Official Fit help: <a href="https://support.google.com/fit/answer/6116547?co=GENIE.Platform%3DAndroid&amp;hl=en-GB">Accessibility in Google Fit</a>. Wallet-on-Fitbit help is at <a href="https://support.google.com/wallet/answer/12967766?hl=en-GB">Pay contactless with your Fitbit device</a>.</p>
+      <h3>On a Pixel with TalkBack, and on iPhone with VoiceOver</h3>
+      <p>Official Fit help says you can use TalkBack to check the day’s activity summary, browse previous days, and double-tap a day for details. That page still mentions older TalkBack “global and local context menus”, which have been replaced by the TalkBack menu and reading controls, so the page is partly dated. In practice, open Fit, swipe the summary, and double-tap for detail, using current TalkBack gestures rather than those old menu names.</p>
+      <p>Fit also exists on iPhone. VoiceOver can read totals in a similar way. After you move, a Pixel can count steps itself; a Fitbit watch is optional, not required, for a basic daily total.</p>
+      <p>If you use a Fitbit watch, set it up from the Fitbit app on the phone, with TalkBack or VoiceOver on the phone. Official Wallet help describes setting up contactless payment through that phone app. This guide could not verify how talk-back-like feedback works on the watch face itself, because official help does not give a clear, current TalkBack-on-watch tutorial in the pages retrieved. Wear OS has its own accessibility help, <a href="https://support.google.com/wearos/answer/7313945?hl=en-GB">Use accessibility features on Wear OS</a>, which is the place to check if you buy a Pixel Watch or another Wear OS watch.</p>
+      <h3>Pain points and workarounds</h3>
+      <ul>
+        <li>Fitness apps are often visual (rings, graphs). Prefer the number totals and the day list.</li>
+        <li>If you only want a step count, the Pixel or iPhone can do that without a watch.</li>
+        <li>Do not treat any of these apps as medical advice or as a substitute for professional care.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="glossary">
+      <h2 id="glossary">Glossary</h2>
+      <ul>
+        <li><strong>Accessibility shortcut.</strong> A button, a volume-key hold, or a swipe that turns an accessibility tool on or off, or switches between tools.</li>
+        <li><strong>Action key.</strong> On an external keyboard used with Android, the Windows key or, on a Mac keyboard, the Command key. TalkBack uses it in the Enhanced keymap and in shortcuts such as Action + Alt + T.</li>
+        <li><strong>Browse mode.</strong> A TalkBack Enhanced keymap mode in which letter keys jump around a web page, similar in spirit to a desktop screen reader. Double-press the TalkBack key to turn it on or off.</li>
+        <li><strong>Call Screen.</strong> A Pixel feature that answers a call first, asks who is calling, and shows you a transcript before you pick up.</li>
+        <li><strong>Gboard.</strong> Google’s on-screen keyboard, including voice typing.</li>
+        <li><strong>Gemini.</strong> Google’s current AI assistant, and the default on Pixel 9 and later.</li>
+        <li><strong>Google Assistant.</strong> The older assistant. Some phrases and devices still use this name.</li>
+        <li><strong>Guided vision.</strong> A Gemini Live feature that describes what the camera sees and helps you line the camera up. Officially not for navigation.</li>
+        <li><strong>Lens in Maps.</strong> A camera mode inside Google Maps that can speak nearby places when TalkBack is on.</li>
+        <li><strong>Look Around.</strong> A visual, street-level view in Maps. Not the same as Lens in Maps, and not verified in this guide as a TalkBack tool.</li>
+        <li><strong>Lookout.</strong> A Google Android app that reads text, describes images and helps you find certain objects with the camera.</li>
+        <li><strong>Passkey.</strong> A way to sign in with your phone’s lock (PIN, fingerprint or face) instead of typing a password. It stays on your devices.</li>
+        <li><strong>RCS.</strong> A richer kind of text message used by Google Messages, now also able to work between many Android phones and iPhones.</li>
+        <li><strong>Reading controls.</strong> TalkBack’s equivalent of the VoiceOver rotor: a setting that changes what a swipe up or down will do, such as move by heading or change speech rate.</li>
+        <li><strong>Rotor.</strong> VoiceOver’s two-finger rotate control, which chooses whether a swipe up or down moves by heading, word, character, and so on.</li>
+        <li><strong>Screen-away mode.</strong> A TalkBack braille keyboard posture in which the phone’s screen faces away from you while you type braille.</li>
+        <li><strong>Select to Speak.</strong> An Android tool that reads a selected part of the screen aloud, without being a full screen reader.</li>
+        <li><strong>Split-tap.</strong> Touch an item with one finger and, without lifting, tap with a second finger to activate it. Available in both VoiceOver and recent TalkBack.</li>
+        <li><strong>TalkBack.</strong> The screen reader built into Android.</li>
+        <li><strong>TalkBack key.</strong> The modifier key for TalkBack keyboard shortcuts, usually Alt or the Action key, depending on the keymap.</li>
+        <li><strong>TalkBack menu.</strong> A menu of TalkBack actions, opened with a three-finger tap or a swipe down then right.</li>
+        <li><strong>Vibration API.</strong> A web feature that lets a page vibrate the phone. It works in Chrome on Android after a tap on the page. It does not work in Safari on iPhone.</li>
+        <li><strong>Voice Access.</strong> An Android tool that controls the phone by spoken commands, such as “Open Gmail” or “Tap compose”.</li>
+        <li><strong>VoiceOver.</strong> The screen reader built into iPhone, iPad and Mac.</li>
+        <li><strong>2-Step Verification (2SV).</strong> An extra check, after your password, when you sign in to your Google Account. A passkey can take the place of this pair of steps.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="unverified">
+      <h2 id="unverified">What could not be verified</h2>
+      <p>These points were researched carefully, but they could not be confirmed as firmly as the rest. They are listed so that you can treat them with caution.</p>
+      <ul>
+        <li>This entire guide was not tested on an iPhone 11 with VoiceOver, and not tested on a Pixel 10 or Pixel 11 with TalkBack. Gestures and menu paths come from official help current in late November 2026, not from a device under the author’s fingers.</li>
+        <li>Pixel 11, Pixel 11 Pro, Pixel 11 Pro XL and Pixel 11 Pro Fold are named in official Google help (for example Call Screen and Live Transcribe). UK shop availability, price, and every software difference versus Pixel 10 were not independently checked.</li>
+        <li>The exact Android version on a UK Pixel 10 or 11 (16, 17, or another) was not confirmed. Official pages already mention Android 16 (TalkBack keyboard toggle) and Android 17 (Select to Speak keyboard toggle). Check Settings, About phone, on the device you buy.</li>
+        <li>Some official TalkBack keyboard shortcut tables did not yield clear labels for every key in the text that could be retrieved. Only clearly labelled shortcuts are listed in this guide. Use the official shortcut page and the in-app keyboard tutorial for the rest.</li>
+        <li>Look Around in Google Maps was not found, in official accessibility help, as a fully documented TalkBack orientation tool. Lens in Maps is the officially documented method. Whether Look Around is usable with TalkBack remains uncertain.</li>
+        <li>The precise Settings path for detailed voice guidance was taken from Google’s original announcement and later reputable write-ups (profile, Settings, Navigation, Walking options). The main Android Maps accessibility page retrieved for this guide described Lens, transit and wheelchair information, but did not repeat that walking path in the same document. If the menu names differ on your app version, search Settings for “Detailed voice guidance” or “Walking”.</li>
+        <li>Gboard “Fix it” and detailed voice edits are officially US-only at the time of the official help retrieved. They may or may not appear on a UK Pixel. Writing-tools voice commands on Pixel 9 (excluding 9a) and later were not tested in the UK.</li>
+        <li>The two official wordings “Hey Google, Voice Access” and “Hey Google, start Voice Access” both appear in Google help, with a note that one form works with Gemini rather than Assistant. Which wording your Pixel accepts should be tried on the device.</li>
+        <li>Web vibration in Chrome on Android, and its absence in Safari on iOS, is documented by MDN and Can I use. It was not tested with your own web apps on a Pixel or an iPhone for this report. Silent mode, Do Not Disturb, and a missing first tap are common reasons for it to fail even on Android.</li>
+        <li>No dedicated official “Use Google Tasks with a screen reader” page was found. Tasks guidance in this guide is therefore general.</li>
+        <li>Official Wallet accessibility help does not spell out every TalkBack step at a UK contactless terminal. First payments should be treated as a practice run.</li>
+        <li>Official Google Fit accessibility help is partly dated (it still mentions old TalkBack context menus). Watch-face accessibility for Fitbit or Pixel Watch was not fully verified from the pages retrieved.</li>
+        <li>Independent older reviews of TalkBack issues in YouTube Music were not re-tested against the late-2026 app.</li>
+        <li>How TalkBack and Live Transcribe behave together on a rolling caption stream, and how the two-finger double-tap is handled inside Recorder, were not device-tested.</li>
+        <li>iMessage-specific features will not come with you to Android. The everyday experience of RCS between a UK Pixel and contacts on iPhone can vary with carrier support, and was not tested here.</li>
+        <li>Gemini Guided vision is officially rolling out slowly and may be absent on a given phone or in a given country at first.</li>
+      </ul>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+
+    <section aria-labelledby="sources">
+      <h2 id="sources">Sources and further help</h2>
+      <p>The main official pages used for this guide are listed below. They are worth saving, because they will be updated when gestures or menus change.</p>
+      <h3>TalkBack and Android accessibility</h3>
+      <ul>
+        <li><a href="https://support.google.com/accessibility/android/answer/6007100?hl=en-GB">Turn on TalkBack</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/6283677?hl=en-GB">Get started on Android with TalkBack</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/6151827?hl=en-GB">Use TalkBack gestures</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/6007066?hl=en-GB">Use the TalkBack menu and reading controls</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/6110948?hl=en-GB">Use TalkBack keyboard shortcuts</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/9728765?hl=en-GB">Use the TalkBack braille keyboard</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/10449331?hl=en-GB">Use TalkBack voice commands</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/16294093?hl=en-GB">What’s new with TalkBack 16.0</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/16800105?hl=en-GB">What’s new with TalkBack 16.2</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/15341968?hl=en-GB">Use image descriptions in TalkBack</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/2633135?hl=en-GB">Use TalkBack to browse the web with Chrome</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/7349565?hl=en-GB">Use Select to Speak</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/6151854?hl=en-GB">Use Voice Access commands</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/7650693?hl=en-GB">Use accessibility shortcuts</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/9031274?hl=en-GB">Use Lookout to explore your surroundings</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/9158064?hl=en-GB">Use Live Transcribe</a></li>
+        <li><a href="https://support.google.com/accessibility/android/answer/18365638?hl=en-GB">Get audio descriptions with guided vision in Gemini Live</a></li>
+      </ul>
+      <h3>Google apps</h3>
+      <ul>
+        <li><a href="https://support.google.com/accounts/answer/185839?hl=en-GB">Turn on 2-Step Verification</a></li>
+        <li><a href="https://support.google.com/mail/answer/90559?hl=en-GB">Use Gmail with a screen reader</a></li>
+        <li><a href="https://support.google.com/calendar/answer/37034?hl=en-GB">Use keyboard shortcuts in Google Calendar</a></li>
+        <li><a href="https://support.google.com/drive/answer/12169158?hl=en-GB">Use Google Drive with a screen reader</a></li>
+        <li><a href="https://support.google.com/accessibility/answer/6282736?hl=en-GB">Use Google Docs editors with a screen reader</a></li>
+        <li><a href="https://support.google.com/keep/answer/16914649?hl=en-GB">Use Google Keep with a screen reader</a></li>
+        <li><a href="https://support.google.com/contacts/answer/6174430?hl=en-GB">Use Google Contacts with a screen reader</a></li>
+        <li><a href="https://support.google.com/photos/answer/6191058?hl=en-GB">Accessibility in Google Photos</a></li>
+        <li><a href="https://support.google.com/maps/answer/6396990?co=GENIE.Platform%3DAndroid&amp;hl=en-GB">Accessibility in Google Maps (Android)</a></li>
+        <li><a href="https://blog.google/products-and-platforms/products/maps/better-maps-for-people-with-vision-impairments/">Detailed voice guidance in Maps (Google blog, 2019)</a></li>
+        <li><a href="https://blog.google/company-news/outreach-and-initiatives/accessibility/ai-accessibility-update-gaad-2024/">GAAD 2024 accessibility updates (Maps and Lookout)</a></li>
+        <li><a href="https://support.google.com/youtube/answer/189278?hl=en-GB">Use YouTube with a screen reader</a></li>
+        <li><a href="https://support.google.com/youtube/answer/7631406?hl=en-GB">Keyboard shortcuts for YouTube</a></li>
+        <li><a href="https://blog.youtube/news-and-events/migrating-your-podcasts/">Migrating your podcasts from Google Podcasts</a></li>
+        <li><a href="https://support.google.com/pixelphone/answer/15283615?hl=en-GB">Use Gemini on your Pixel phone</a></li>
+        <li><a href="https://support.google.com/meet/answer/15738543?hl=en-GB">Use Google Meet with a screen reader</a></li>
+        <li><a href="https://support.google.com/messages/answer/6105764?hl=en-GB">Make Google Messages more accessible</a></li>
+        <li><a href="https://support.google.com/pixelphone/answer/9118387?hl=en-GB">Screen your calls before you answer them</a></li>
+        <li><a href="https://support.google.com/pixelphone/answer/16267698?hl=en-GB">Create, edit and manage Recorder transcriptions</a></li>
+        <li><a href="https://support.google.com/gboard/answer/11197787?hl=en-GB">Use advanced voice typing features</a></li>
+        <li><a href="https://support.google.com/wallet/answer/16244062?hl=en-GB">Google Wallet accessibility</a></li>
+        <li><a href="https://support.google.com/fit/answer/6116547?co=GENIE.Platform%3DAndroid&amp;hl=en-GB">Accessibility in Google Fit</a></li>
+        <li><a href="https://support.google.com/a/users/answer/9298571?hl=en-GB">Google Workspace keyboard shortcuts</a></li>
+      </ul>
+      <h3>VoiceOver and web vibration</h3>
+      <ul>
+        <li><a href="https://support.apple.com/guide/iphone/use-voiceover-gestures-iph3e2e2281/ios">Use VoiceOver gestures on iPhone (Apple)</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate">MDN: Navigator.vibrate()</a></li>
+        <li><a href="https://caniuse.com/vibration">Can I use: Vibration API</a></li>
+      </ul>
+      <h3>Human help</h3>
+      <p>Google’s official path for more accessibility help is the Disability Support team, which is linked from the bottom of most of the pages above. In the UK, organisations such as the RNIB can also help with choosing and learning a new phone. This guide is not a substitute for that kind of personal training.</p>
+      <p class="back-top"><a href="#contents">Back to contents</a></p>
+    </section>
+  </main>
+  <footer>
+    <p>Google Suite Accessibility Guide for Ahsan Ali. Written 23 November 2026, Europe/London time. Researched from official Google help and the supporting sources listed above. Not tested on an iPhone with VoiceOver, or on a Pixel with TalkBack, by the author.</p>
+    <p><a href="#contents">Back to contents</a></p>
+  </footer>
+</body>
+</html>
